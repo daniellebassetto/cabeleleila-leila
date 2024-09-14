@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Swashbuckle.AspNetCore.Newtonsoft" Version="6.7.3" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.7.3" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\CabeleleilaLeila.Application\CabeleleilaLeila.Application.csproj" />
+		<ProjectReference Include="..\CabeleleilaLeila.Domain\CabeleleilaLeila.Domain.csproj" />
+		<ProjectReference Include="..\CabeleleilaLeila.Infraestructure\CabeleleilaLeila.Infraestructure.csproj" />
+	</ItemGroup>
+
+</Project>
