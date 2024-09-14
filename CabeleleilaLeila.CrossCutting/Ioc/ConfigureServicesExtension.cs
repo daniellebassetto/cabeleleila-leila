@@ -88,7 +88,7 @@ public static class ConfigureServicesExtension
             x.SwaggerDoc("v1", new OpenApiInfo
             {
                 Title = "Cabeleleila Leila",
-                Description = "Controle de condicionais (popularmente conhecido como 'malinha') de roupas e calçados.",
+                Description = "Sistema de agendamento de serviços no Salão da Leila",
                 Version = "v1",
                 Contact = contact
             });
@@ -106,7 +106,7 @@ public static class ConfigureServicesExtension
 
     private static void AddCors()
     {
-        ServiceCollection.AddCors(options => options.AddPolicy("wasm", policy => policy.WithOrigins("http://localhost:3000").AllowAnyMethod().SetIsOriginAllowed(pol => true).AllowAnyHeader().AllowCredentials()));
+        ServiceCollection.AddCors(options => options.AddPolicy("wasm", policy => policy.WithOrigins("https://localhost:5082", "http://localhost:5083").AllowAnyMethod().SetIsOriginAllowed(pol => true).AllowAnyHeader().AllowCredentials()));
     }
 
     private static void AddRateLimit()

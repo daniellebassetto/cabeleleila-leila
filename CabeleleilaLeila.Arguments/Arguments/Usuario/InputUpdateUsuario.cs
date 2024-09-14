@@ -19,11 +19,10 @@ public class InputUpdateUsuario
     public InputUpdateUsuario() { }
 
     [JsonConstructor]
-    public InputUpdateUsuario(string nome, string celular, string email, EnumTipoUsuario tipo)
+    public InputUpdateUsuario(string nome, string celular, EnumTipoUsuario tipo)
     {
         Nome = nome;
         Celular = celular;
-        Email = email;
         Tipo = tipo;
     }
 }

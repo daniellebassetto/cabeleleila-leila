@@ -8,9 +8,6 @@ public class InputCreateUsuario
     [MaxLength(80, ErrorMessage = "O nome deve ter no máximo 80 caracteres.")]
     public string? Nome { get; private set; }
 
-    [StringLength(11, MinimumLength = 11, ErrorMessage = "O CPF deve ter exatamente 11 caracteres numéricos.")]
-    public string? Cpf { get; private set; }
-
     [StringLength(13, MinimumLength = 13, ErrorMessage = "O número de celular deve ter exatamente 13 caracteres numéricos.")]
     public string? Celular { get; private set; }
 
@@ -19,15 +16,18 @@ public class InputCreateUsuario
     
     public EnumTipoUsuario? Tipo { get; private set; }
 
+    [MaxLength(12, ErrorMessage = "A senha deve ter no máximo 12 caracteres.")]
+    public string? Senha { get; private set; }
+
     public InputCreateUsuario() { }
 
     [JsonConstructor]
-    public InputCreateUsuario(string nome, string cpf, string celular, string email, EnumTipoUsuario tipo)
+    public InputCreateUsuario(string nome, string celular, string email, EnumTipoUsuario tipo, string senha)
     {
         Nome = nome;
-        Cpf = cpf;
         Celular = celular;
         Email = email;
         Tipo = tipo;
+        Senha = senha;
     }
 }

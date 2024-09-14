@@ -49,7 +49,13 @@ public class UsuarioMap : IEntityTypeConfiguration<Usuario>
         builder.Property(x => x.Email).ValueGeneratedNever();
 
         builder.Property(x => x.Tipo).HasColumnName("tipo");
+        builder.Property(x => x.Email).IsRequired();
         builder.Property(x => x.Tipo).HasColumnType("INT");
         builder.Property(x => x.Tipo).ValueGeneratedNever();
+
+        builder.Property(x => x.Senha).HasColumnName("senha");
+        builder.Property(x => x.Email).IsRequired();
+        builder.Property(x => x.Senha).HasColumnType("VARCHAR(100)");
+        builder.Property(x => x.Senha).ValueGeneratedNever();
     }
 }

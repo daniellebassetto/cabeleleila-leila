@@ -9,13 +9,10 @@ public class UsuarioService(IUnitOfWork unitOfWork) : BaseService<IUsuarioReposi
 {
     public override OutputUsuario Create(InputCreateUsuario inputCreate)
     {
-        Usuario? originalCustomer = _repository!.GetByIdentifier(new InputIdentifierUsuario(inputCreate.Cpf!));
+        Usuario? originalCustomer = _repository!.GetByIdentifier(new InputIdentifierUsuario(inputCreate.Email!));
 
         if (originalCustomer is not null)
-            throw new InvalidOperationException($"Cpf '{inputCreate.Cpf}' já cadastrado na base de dados.");
-
-        if(!inputCreate.Cpf!.All(char.IsNumber))
-            throw new InvalidOperationException($"CPF deve conter apenas números");
+            throw new InvalidOperationException($"Email '{inputCreate.Email}' já cadastrado na base de dados.");
 
         Usuario customer = FromInputCreateToEntity(inputCreate);
         var entity = _repository.Create(customer) ?? throw new InvalidOperationException("Falha ao criar o usuário.");
@@ -46,5 +43,20 @@ public class UsuarioService(IUnitOfWork unitOfWork) : BaseService<IUsuarioReposi
         _unitOfWork!.Commit();
 
         return true;
+    }
+
+    public OutputUsuario Login(InputLoginUser input)
+    {
+        var user = _repository!.GetByIdentifier(new InputIdentifierUsuario(input.Email!));
+
+        if(user != null)
+        {
+            if (user.Senha == input.Senha)
+                return FromEntityToOutput(user);
+            else
+                throw new InvalidOperationException("Senha inválida.");
+        }
+
+        throw new InvalidOperationException("Email inválido.");
     }
 }

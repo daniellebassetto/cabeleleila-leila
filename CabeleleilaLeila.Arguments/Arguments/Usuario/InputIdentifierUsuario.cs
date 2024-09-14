@@ -4,13 +4,13 @@ namespace CabeleleilaLeila.Arguments;
 
 public class InputIdentifierUsuario
 {
-    public string? Cpf { get; private set; }
+    public string? Email { get; private set; }
 
     public InputIdentifierUsuario() { }
 
     [JsonConstructor]
-    public InputIdentifierUsuario(string cpf)
+    public InputIdentifierUsuario(string email)
     {
-        Cpf = cpf;
+        Email = email;
     }
 }
