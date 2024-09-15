@@ -2,7 +2,7 @@
 
 namespace CabeleleilaLeila.Web.Services;
 
-public class UserServiceClient(IHttpClientFactory factory) :  BaseServiceClient<InputCreateUser, InputUpdateUser, OutputUser, InputIdentifierUser>(factory), IUserServiceClient 
+public class UserServiceClient(IHttpClientFactory factory) : BaseServiceClient<InputCreateUser, InputUpdateUser, OutputUser, InputIdentifierUser>(factory), IUserServiceClient
 {
     public async Task<BaseServiceClientResponse<OutputUser>> Login(InputLoginUser input)
     {

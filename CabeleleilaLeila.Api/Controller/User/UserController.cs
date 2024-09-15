@@ -1,12 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using CabeleleilaLeila.Arguments;
-using CabeleleilaLeila.Application.ApiManagement;
+﻿using CabeleleilaLeila.Application.ApiManagement;
 using CabeleleilaLeila.Application.Interfaces;
+using CabeleleilaLeila.Arguments;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CabeleleilaLeila.Api.Controllers;
 
 [Route("api/[controller]")]
-public class UserController(IApiDataService apiDataService, IUserService service) : BaseController<IUserService, InputCreateUser, InputUpdateUser, OutputUser, InputIdentifierUser>(apiDataService, service) 
+public class UserController(IApiDataService apiDataService, IUserService service) : BaseController<IUserService, InputCreateUser, InputUpdateUser, OutputUser, InputIdentifierUser>(apiDataService, service)
 {
     [HttpPost("Login")]
     [ProducesResponseType(StatusCodes.Status200OK)]

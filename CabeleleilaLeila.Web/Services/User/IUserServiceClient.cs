@@ -2,7 +2,7 @@
 
 namespace CabeleleilaLeila.Web.Services;
 
-public interface IUserServiceClient : IBaseServiceClient<InputCreateUser, InputUpdateUser, OutputUser, InputIdentifierUser> 
+public interface IUserServiceClient : IBaseServiceClient<InputCreateUser, InputUpdateUser, OutputUser, InputIdentifierUser>
 {
     Task<BaseServiceClientResponse<OutputUser>> Login(InputLoginUser input);
     Task<BaseServiceClientResponse<bool>> SendLinkToRedefinePassword(InputSendLinkToRedefinePasswordUser input);

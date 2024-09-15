@@ -1,12 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using CabeleleilaLeila.Arguments;
-using CabeleleilaLeila.Application.ApiManagement;
+﻿using CabeleleilaLeila.Application.ApiManagement;
 using CabeleleilaLeila.Application.Interfaces;
+using CabeleleilaLeila.Arguments;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CabeleleilaLeila.Api.Controllers;
 
 [Route("api/[controller]")]
-public class ScheduledController(IApiDataService apiDataService, IScheduledService service) : BaseController<IScheduledService, InputCreateScheduled, InputUpdateScheduled, OutputScheduled, InputIdentifierScheduled>(apiDataService, service) 
+public class ScheduledController(IApiDataService apiDataService, IScheduledService service) : BaseController<IScheduledService, InputCreateScheduled, InputUpdateScheduled, OutputScheduled, InputIdentifierScheduled>(apiDataService, service)
 {
     [HttpPost("Cancel/{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]

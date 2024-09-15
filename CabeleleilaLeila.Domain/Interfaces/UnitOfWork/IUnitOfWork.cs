@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Storage;
-using CabeleleilaLeila.Domain.Entities;
+﻿using CabeleleilaLeila.Domain.Entities;
 
 namespace CabeleleilaLeila.Domain.Interfaces;
 

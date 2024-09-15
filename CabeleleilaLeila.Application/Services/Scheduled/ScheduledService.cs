@@ -1,7 +1,7 @@
-﻿using CabeleleilaLeila.Arguments;
+﻿using CabeleleilaLeila.Application.Interfaces;
+using CabeleleilaLeila.Arguments;
 using CabeleleilaLeila.Domain.Entities;
 using CabeleleilaLeila.Domain.Interfaces;
-using CabeleleilaLeila.Application.Interfaces;
 
 namespace CabeleleilaLeila.Application.Services;
 

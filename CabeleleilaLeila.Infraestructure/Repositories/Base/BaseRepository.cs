@@ -1,6 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using CabeleleilaLeila.Domain.Entities;
+﻿using CabeleleilaLeila.Domain.Entities;
 using CabeleleilaLeila.Domain.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 using System.Reflection;
 

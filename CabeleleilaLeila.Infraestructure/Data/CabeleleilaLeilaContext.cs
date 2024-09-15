@@ -1,6 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using CabeleleilaLeila.Domain.Entities;
+﻿using CabeleleilaLeila.Domain.Entities;
 using CabeleleilaLeila.Infraestructure.Maps;
+using Microsoft.EntityFrameworkCore;
 
 namespace CabeleleilaLeila.Infraestructure;
 

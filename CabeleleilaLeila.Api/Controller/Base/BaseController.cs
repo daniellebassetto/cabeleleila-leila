@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Filters;
-using CabeleleilaLeila.Application.ApiManagement;
+﻿using CabeleleilaLeila.Application.ApiManagement;
 using CabeleleilaLeila.Application.Interfaces;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace CabeleleilaLeila.Api.Controllers;
 

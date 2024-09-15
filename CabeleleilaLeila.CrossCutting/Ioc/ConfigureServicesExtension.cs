@@ -1,4 +1,12 @@
 ﻿using AutoMapper;
+using CabeleleilaLeila.Application.ApiManagement;
+using CabeleleilaLeila.Application.Helpers;
+using CabeleleilaLeila.Application.Interfaces;
+using CabeleleilaLeila.Application.Mapping;
+using CabeleleilaLeila.Application.Services;
+using CabeleleilaLeila.Domain.Interfaces;
+using CabeleleilaLeila.Infraestructure;
+using CabeleleilaLeila.Infraestructure.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
@@ -6,15 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
-using CabeleleilaLeila.Application.ApiManagement;
-using CabeleleilaLeila.Application.Interfaces;
-using CabeleleilaLeila.Application.Mapping;
-using CabeleleilaLeila.Application.Services;
-using CabeleleilaLeila.Domain.Interfaces;
-using CabeleleilaLeila.Infraestructure;
-using CabeleleilaLeila.Infraestructure.Repositories;
 using System.Threading.RateLimiting;
-using CabeleleilaLeila.Application.Helpers;
 
 namespace CabeleleilaLeila.CrossCutting.Ioc;
 
