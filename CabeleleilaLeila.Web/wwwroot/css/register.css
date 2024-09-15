@@ -57,6 +57,12 @@ body {
     transition: box-shadow 0.3s ease;
 }
 
+.form-container{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
 h2 {
     margin-bottom: 20px;
     color: #333;
@@ -64,7 +70,6 @@ h2 {
 }
 
 .input-group {
-    margin-bottom: 15px;
     text-align: left;
 }
 
@@ -83,12 +88,19 @@ h2 {
     outline: none;
 }
 
+.input-group-wraper {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+
 .input-group input:focus {
     border-color: #007bff;
 }
 
 .input-group-showPassword {
-    width: 10%;
+    width: 25%;
     background-color: #007bff;
     border: none;
 }

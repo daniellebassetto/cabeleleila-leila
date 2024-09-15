@@ -31,36 +31,40 @@
             }
             <div class="register-card">
                 <h2>Registro</h2>
-                <form action="#" method="POST">
+                <form class="form-container" action="#" method="POST">
                     <div class="input-group">
                         <label for="name" name="name">Nome</label>
                         <input type="text" asp-for="Name" id="name" placeholder="Informe o nome">
                         @Html.ValidationMessageFor(x => x.Name)
                     </div>
-                    <div class="input-group">
-                        <label for="email" name="email">Email</label>
-                        <input type="text" asp-for="Email" id="email" placeholder="Informe o email">
-                        @Html.ValidationMessageFor(x => x.Email)
-                    </div>
-                    <div class="input-group">
-                        <label for="mobilePhone" name="mobilePhone">Celular</label>
-                        <input type="text" asp-for="MobilePhone" id="mobilePhone" placeholder="Informe o telefone">
-                        @Html.ValidationMessageFor(x => x.MobilePhone)
-                    </div>
-                    <div class="input-group">
-                        <label for="password" name="password">Senha</label>
+                    <div class="input-group-wraper">
                         <div class="input-group">
-                            <input type="password" asp-for="Password" class="form-control" id="password" placeholder="Informe a senha">
-                            <button class="input-group-showPassword" type="button" id="showHidePassword">
-                                <i class="fa fa-eye" aria-hidden="true"></i>
-                            </button>
+                            <label for="email" name="email">Email</label>
+                            <input type="text" asp-for="Email" id="email" placeholder="Informe o email">
+                            @Html.ValidationMessageFor(x => x.Email)
                         </div>
-                        @Html.ValidationMessageFor(x => x.Password)
+                        <div class="input-group">
+                            <label for="mobilePhone" name="mobilePhone">Celular</label>
+                            <input type="text" asp-for="MobilePhone" id="mobilePhone" placeholder="Informe o telefone">
+                            @Html.ValidationMessageFor(x => x.MobilePhone)
+                        </div>
                     </div>
-                    <div class="input-group">
-                        <label for="confirmPassword" name="confirmPassword">Confirmação de senha</label>
-                        <input type="password" asp-for="ConfirmPassword" id="confirmPassword" placeholder="Informe a senha">
-                        @Html.ValidationMessageFor(x => x.ConfirmPassword)
+                    <div class="input-group-wraper">
+                        <div class="input-group">
+                            <label for="password" name="password">Senha</label>
+                            <div class="input-group">
+                                <input type="password" asp-for="Password" class="form-control" id="password" placeholder="Informe a senha">
+                                <button class="input-group-showPassword" type="button" id="showHidePassword">
+                                    <i class="fa fa-eye" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                            @Html.ValidationMessageFor(x => x.Password)
+                        </div>
+                        <div class="input-group">
+                            <label for="confirmPassword" name="confirmPassword">Confirmação de senha</label>
+                            <input type="password" asp-for="ConfirmPassword" id="confirmPassword" placeholder="Informe a senha">
+                            @Html.ValidationMessageFor(x => x.ConfirmPassword)
+                        </div>
                     </div>
                     <div class="button-group">
                         <button type="submit" class="btn">Cadastrar</button>

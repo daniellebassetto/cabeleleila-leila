@@ -25,6 +25,9 @@ public class ScheduledService(IUnitOfWork unitOfWork) : BaseService<IScheduledRe
     {
         Scheduled? originalScheduled = _repository!.Get(x => x.Id == id) ?? throw new KeyNotFoundException($"Não foi encontrado nenhum agendamento correspondente a este Id.");
 
+        if (originalScheduled.Status == EnumStatusScheduled.Canceled)
+            throw new InvalidOperationException($"Este agendamento foi cancelado.");
+
         Scheduled scheduled = UpdateEntity(originalScheduled, inputUpdate) ?? throw new Exception("Problemas para realizar atualização");
         var entity = _repository!.Update(scheduled) ?? throw new InvalidOperationException("Falha ao atualizar o agendamento.");
         _unitOfWork!.Commit();

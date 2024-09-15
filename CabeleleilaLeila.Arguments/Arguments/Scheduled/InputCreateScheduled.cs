@@ -5,8 +5,11 @@ namespace CabeleleilaLeila.Arguments;
 
 public class InputCreateScheduled
 {
+    [Required(ErrorMessage = "Campo obrigatório")]
     public long? UserId { get; set; }
+    [Required(ErrorMessage = "Campo obrigatório")]
     public DateTime? DateTime { get; set; }
+    [Required(ErrorMessage = "Campo obrigatório")]
     public EnumServiceScheduled Service { get; set; }
 
     [MaxLength(1000, ErrorMessage = "A observação deve ter no máximo 1000 caracteres.")]
