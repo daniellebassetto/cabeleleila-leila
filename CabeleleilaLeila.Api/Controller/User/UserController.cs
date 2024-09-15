@@ -12,7 +12,7 @@ public class UserController(IApiDataService apiDataService, IUserService service
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType<BaseResponseApi<string>>(StatusCodes.Status400BadRequest)]
     [ProducesResponseType<BaseResponseApi<string>>(StatusCodes.Status404NotFound)]
-    public async Task<ActionResult<BaseResponseApi<OutputUser>>> Update([FromBody] InputLoginUser input)
+    public async Task<ActionResult<BaseResponseApi<OutputUser>>> Login([FromBody] InputLoginUser input)
     {
         try
         {

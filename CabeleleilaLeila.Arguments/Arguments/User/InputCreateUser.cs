@@ -17,14 +17,18 @@ public class InputCreateUser
     [MaxLength(12, ErrorMessage = "A senha deve ter no máximo 12 caracteres.")]
     public string? Password { get; set; }
 
+    [MaxLength(12, ErrorMessage = "A senha deve ter no máximo 12 caracteres.")]
+    public string? ConfirmPassword { get; set; }
+
     public InputCreateUser() { }
 
     [JsonConstructor]
-    public InputCreateUser(string name, string mobilePhone, string email, string password)
+    public InputCreateUser(string name, string mobilePhone, string email, string password, string confirmPassword)
     {
         Name = name;
         MobilePhone = mobilePhone;
         Email = email;
         Password = password;
+        ConfirmPassword = confirmPassword;
     }
 }

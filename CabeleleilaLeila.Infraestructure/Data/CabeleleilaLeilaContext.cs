@@ -16,6 +16,7 @@ public class CabeleleilaLeilaContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfiguration(new UserMap());
+        modelBuilder.ApplyConfiguration(new ScheduledMap());
 
         base.OnModelCreating(modelBuilder);
     }

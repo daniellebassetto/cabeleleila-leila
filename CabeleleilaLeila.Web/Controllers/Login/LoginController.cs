@@ -17,19 +17,14 @@ public class LoginController(IUserServiceClient userServiceClient, Web.Helpers.I
         return View();
     }
 
-    public IActionResult RedefinePassword()
-    {
-        return View();
-    }
-
     [HttpPost]
-    public IActionResult Enter(InputLoginUser input)
+    public async Task<IActionResult> Login(InputLoginUser input)
     {
         try
         {
             if (ModelState.IsValid)
             {
-                var response = _userServiceClient.Login(input).Result;
+                var response = await _userServiceClient.Login(input);
 
                 if (response.Success)
                 {
@@ -57,24 +52,56 @@ public class LoginController(IUserServiceClient userServiceClient, Web.Helpers.I
         return RedirectToAction("Index", "Login");
     }
 
+    public IActionResult SendLinkToRedefinePassword()
+    {
+        return View();
+    }
+
     [HttpPost]
-    public IActionResult SendLinkToRedefinePassword(InputSendLinkToRedefinePasswordUser input)
+    public async Task<IActionResult> SendLinkToRedefinePassword(InputSendLinkToRedefinePasswordUser input)
     {
         try
         {
             if (ModelState.IsValid)
             {
-                var response = _userServiceClient.SendLinkToRedefinePassword(input).Result;
+                var response =  await _userServiceClient.SendLinkToRedefinePassword(input);
 
-                if (response.Success)
-                {
-                    return RedirectToAction("Index", "Login");
-                }
+                if (response.Success)                
+                    return RedirectToAction("Index", "Login");                
 
                 TempData["ErrorMessage"] = response.ErrorMessage!;
             }
 
             return View("Index");
+        }
+        catch (Exception ex)
+        {
+            TempData["ErrorMessage"] = $"Erro: {ex.Message}";
+            return RedirectToAction("Index");
+        }
+    }
+
+    public IActionResult Register()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Register(InputCreateUser input)
+    {
+        try
+        {
+            if (ModelState.IsValid)
+            {
+                var response = await _userServiceClient.Create(input);
+
+                if (response.Success)
+                    return RedirectToAction("Index");
+
+                TempData["ErrorMessage"] = response.ErrorMessage!;
+            }
+
+            return View(input);
         }
         catch (Exception ex)
         {

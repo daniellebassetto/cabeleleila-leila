@@ -22,14 +22,14 @@ public class BaseServiceClient<TInputCreate, TInputUpdate, TOutput, TInputIdenti
         return await HandleRequestAsync<TOutput>(HttpMethod.Post, $"{_nameService}/GetByIdentifier", inputIdentifier);
     }
 
-    public async Task<BaseServiceClientResponse<bool>> Create(TInputCreate inputCreate)
+    public async Task<BaseServiceClientResponse<TOutput>> Create(TInputCreate inputCreate)
     {
-        return await HandleRequestAsync<bool>(HttpMethod.Post, $"{_nameService}", inputCreate);
+        return await HandleRequestAsync<TOutput>(HttpMethod.Post, $"{_nameService}", inputCreate);
     }
 
-    public async Task<BaseServiceClientResponse<bool>> Update(long id, TInputUpdate inputUpdate)
+    public async Task<BaseServiceClientResponse<TOutput>> Update(long id, TInputUpdate inputUpdate)
     {
-        return await HandleRequestAsync<bool>(HttpMethod.Put, $"{_nameService}/{id}", inputUpdate);
+        return await HandleRequestAsync<TOutput>(HttpMethod.Put, $"{_nameService}/{id}", inputUpdate);
     }
 
     public async Task<BaseServiceClientResponse<bool>> Delete(long id)

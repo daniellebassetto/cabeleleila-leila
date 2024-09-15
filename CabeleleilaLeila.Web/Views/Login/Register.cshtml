@@ -1,22 +1,19 @@
 ﻿<!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    @model InputLoginUser
+    @model InputCreateUser
     @{
         Layout = "_LayoutLoggedOut";
-        ViewData["Title"] = "Login";
+        ViewData["Title"] = "Cadastro";
     }
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="~/css/login.css">
+    <link rel="stylesheet" href="~/css/register.css">
 </head>
 <body>
-    <main class="login-wrapper">
-        <section class="login-left">
-            <img src="~/img/imagem_login.png" alt="Logo da Empresa" class="logo">
-        </section>
-        <section class="login-right">
-            <h1 class="login-right-titulo">Cabeleleila Leila</h1>
+    <div class="register-wrapper">
+        <div class="register-left">
+            <h1 class="register-left-titulo">Cabeleleila Leila</h1>
             @if (TempData["SuccessMessage"] != null)
             {
                 <div class="alert alert-success" role="alert">
@@ -32,13 +29,23 @@
                     @TempData["ErrorMessage"]
                 </div>
             }
-            <div class="login-card">
-                <h2>Login</h2>
-                <form asp-controller="Login" asp-action="Login" method="post">
+            <div class="register-card">
+                <h2>Registro</h2>
+                <form action="#" method="POST">
+                    <div class="input-group">
+                        <label for="name" name="name">Nome</label>
+                        <input type="text" asp-for="Name" id="name" placeholder="Informe o nome">
+                        @Html.ValidationMessageFor(x => x.Name)
+                    </div>
                     <div class="input-group">
                         <label for="email" name="email">Email</label>
-                        <input type="text" asp-for="Email" id="email" placeholder="Informe o login">
+                        <input type="text" asp-for="Email" id="email" placeholder="Informe o email">
                         @Html.ValidationMessageFor(x => x.Email)
+                    </div>
+                    <div class="input-group">
+                        <label for="mobilePhone" name="mobilePhone">Celular</label>
+                        <input type="text" asp-for="MobilePhone" id="mobilePhone" placeholder="Informe o telefone">
+                        @Html.ValidationMessageFor(x => x.MobilePhone)
                     </div>
                     <div class="input-group">
                         <label for="password" name="password">Senha</label>
@@ -50,18 +57,21 @@
                         </div>
                         @Html.ValidationMessageFor(x => x.Password)
                     </div>
-                    <p>
-                        Esqueceu sua senha?
-                        <a asp-action="SendLinkToRedefinePassword" asp-controller="Login">Redefinir senha</a>
-                    </p>
-
+                    <div class="input-group">
+                        <label for="confirmPassword" name="confirmPassword">Confirmação de senha</label>
+                        <input type="password" asp-for="ConfirmPassword" id="confirmPassword" placeholder="Informe a senha">
+                        @Html.ValidationMessageFor(x => x.ConfirmPassword)
+                    </div>
                     <div class="button-group">
-                        <button type="submit" class="btn">Logar</button>
-                        <a asp-action="Register" asp-controller="Login" class="btn register-btn">Cadastrar</a>
+                        <button type="submit" class="btn">Cadastrar</button>
+                        <a asp-action="Index" asp-controller="Login" class="btn register-btn">Voltar ao Login</a>
                     </div>
                 </form>
             </div>
-        </section>
-    </main>
+        </div>
+        <div class="register-right">
+            <img src="~/img/imagem-cadastro.png" alt="Imagem cadastro" class="logo">
+        </div>
+    </div>
 </body>
 </html>

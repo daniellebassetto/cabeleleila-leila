@@ -17,6 +17,9 @@ public class UserService(IUnitOfWork unitOfWork, IEmail email) : BaseService<IUs
         if (originalUser is not null)
             throw new InvalidOperationException($"Email '{inputCreate.Email}' já cadastrado na base de dados.");
 
+        if(inputCreate.Password != inputCreate.ConfirmPassword)
+            throw new InvalidOperationException($"Confirmação de senha não coincide com senha.");
+
         User user = FromInputCreateToEntity(inputCreate).SetProperty(nameof(User.Type), EnumTypeUser.Default);
         var entity = _repository.Create(user) ?? throw new InvalidOperationException("Falha ao criar o usuário.");
         _unitOfWork!.Commit();

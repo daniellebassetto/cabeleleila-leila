@@ -1,10 +1,13 @@
 ﻿using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
 
 namespace CabeleleilaLeila.Arguments;
 
 public class InputLoginUser
 {
+    [Required]
     public string? Email { get; set; }
+    [Required]
     public string? Password { get; set; }
 
     public InputLoginUser() { }

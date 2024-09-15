@@ -4,13 +4,13 @@ namespace CabeleleilaLeila.Domain.Entities;
 
 public class Scheduled : BaseEntity<Scheduled>
 {
-    public long UserId { get; set; }
-    public DateTime DateTime { get; set; }
-    public EnumServiceScheduled Service { get; set; }
-    public EnumStatusScheduled Status { get; set; }
-    public string? Observation { get; set; }
+    public long UserId { get; private set; }
+    public DateTime DateTime { get; private set; }
+    public EnumServiceScheduled Service { get; private set; }
+    public EnumStatusScheduled Status { get; private set; }
+    public string? Observation { get; private set; }
 
-    public User? User { get; private set; }
+    public virtual User? User { get; private set; }
 
     public Scheduled() { }
 
