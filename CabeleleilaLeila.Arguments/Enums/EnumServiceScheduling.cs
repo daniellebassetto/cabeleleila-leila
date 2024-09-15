@@ -1,6 +1,6 @@
 ﻿namespace CabeleleilaLeila.Arguments;
 
-public enum EnumServiceScheduled
+public enum EnumServiceScheduling
 {
     Haircut,
     Hydration,

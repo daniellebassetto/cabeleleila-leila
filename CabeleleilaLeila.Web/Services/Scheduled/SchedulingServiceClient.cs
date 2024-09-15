@@ -2,7 +2,7 @@
 
 namespace CabeleleilaLeila.Web.Services;
 
-public class ScheduledServiceClient(IHttpClientFactory factory) : BaseServiceClient<InputCreateScheduled, InputUpdateScheduled, OutputScheduled, InputIdentifierScheduled>(factory), IScheduledServiceClient
+public class SchedulingServiceClient(IHttpClientFactory factory) : BaseServiceClient<InputCreateScheduling, InputUpdateScheduling, OutputScheduling, InputIdentifierScheduling>(factory), ISchedulingServiceClient
 {
     public async Task<BaseServiceClientResponse<bool>> Cancel(long id)
     {

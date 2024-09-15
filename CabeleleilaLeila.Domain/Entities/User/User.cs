@@ -10,17 +10,17 @@ public class User : BaseEntity<User>
     public EnumTypeUser? Type { get; private set; }
     public string? Password { get; private set; }
 
-    public virtual List<Scheduled>? ListScheduled { get; private set; }
+    public virtual List<Scheduling>? ListScheduling { get; private set; }
 
     public User() { }
 
-    public User(string name, string mobilePhone, string email, EnumTypeUser type, string password, List<Scheduled>? listScheduled)
+    public User(string name, string mobilePhone, string email, EnumTypeUser type, string password, List<Scheduling>? listScheduling)
     {
         Name = name;
         MobilePhone = mobilePhone;
         Email = email;
         Type = type;
         Password = password;
-        ListScheduled = listScheduled;
+        ListScheduling = listScheduling;
     }
 }

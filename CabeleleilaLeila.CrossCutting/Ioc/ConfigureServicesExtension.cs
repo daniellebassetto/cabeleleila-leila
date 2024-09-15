@@ -59,10 +59,10 @@ public static class ConfigureServicesExtension
     private static void AddTransient()
     {
         ServiceCollection.AddTransient<IUserService, UserService>();
-        ServiceCollection.AddTransient<IScheduledService, ScheduledService>();
+        ServiceCollection.AddTransient<ISchedulingService, SchedulingService>();
 
         ServiceCollection.AddTransient<IUserRepository, UserRepository>();
-        ServiceCollection.AddTransient<IScheduledRepository, ScheduledRepository>();
+        ServiceCollection.AddTransient<ISchedulingRepository, SchedulingRepository>();
 
         ServiceCollection.AddTransient<IUnitOfWork, UnitOfWork>();
         ServiceCollection.AddTransient<IEmail, Email>();

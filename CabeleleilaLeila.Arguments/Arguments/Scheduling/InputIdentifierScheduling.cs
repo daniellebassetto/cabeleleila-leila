@@ -3,15 +3,15 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CabeleleilaLeila.Arguments;
 
-public class InputIdentifierScheduled
+public class InputIdentifierScheduling
 {
     [Required(ErrorMessage = "Campo obrigatório")]
     public DateTime? DateTime { get; set; }
 
-    public InputIdentifierScheduled() { }
+    public InputIdentifierScheduling() { }
 
     [JsonConstructor]
-    public InputIdentifierScheduled(DateTime dateTime)
+    public InputIdentifierScheduling(DateTime dateTime)
     {
         DateTime = dateTime;
     }

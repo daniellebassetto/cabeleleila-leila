@@ -2,19 +2,19 @@
 
 namespace CabeleleilaLeila.Domain.Entities;
 
-public class Scheduled : BaseEntity<Scheduled>
+public class Scheduling : BaseEntity<Scheduling>
 {
     public long UserId { get; private set; }
     public DateTime DateTime { get; private set; }
-    public EnumServiceScheduled Service { get; private set; }
-    public EnumStatusScheduled Status { get; private set; }
+    public EnumServiceScheduling Service { get; private set; }
+    public EnumStatusScheduling Status { get; private set; }
     public string? Observation { get; private set; }
 
     public virtual User? User { get; private set; }
 
-    public Scheduled() { }
+    public Scheduling() { }
 
-    public Scheduled(long userId, DateTime datetime, EnumServiceScheduled service, EnumStatusScheduled status, string? observation, User? user)
+    public Scheduling(long userId, DateTime datetime, EnumServiceScheduling service, EnumStatusScheduling status, string? observation, User? user)
     {
         UserId = userId;
         DateTime = datetime;

@@ -1,6 +1,6 @@
 ﻿namespace CabeleleilaLeila.Arguments;
 
-public enum EnumStatusScheduled
+public enum EnumStatusScheduling
 {
     WaitingConfirmation,
     Confirmed,

@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace CabeleleilaLeila.Infraestructure.Maps;
 
-public class ScheduledMap : IEntityTypeConfiguration<Scheduled>
+public class SchedulingMap : IEntityTypeConfiguration<Scheduling>
 {
-    public void Configure(EntityTypeBuilder<Scheduled> builder)
+    public void Configure(EntityTypeBuilder<Scheduling> builder)
     {
         builder.ToTable("agendamento");
 
-        builder.HasOne(x => x.User).WithMany(x => x.ListScheduled).HasForeignKey(x => x.UserId);
+        builder.HasOne(x => x.User).WithMany(x => x.ListScheduling).HasForeignKey(x => x.UserId);
 
         builder.HasKey(x => x.Id);
 

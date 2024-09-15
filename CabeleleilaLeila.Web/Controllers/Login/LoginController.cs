@@ -64,10 +64,10 @@ public class LoginController(IUserServiceClient userServiceClient, Web.Helpers.I
         {
             if (ModelState.IsValid)
             {
-                var response =  await _userServiceClient.SendLinkToRedefinePassword(input);
+                var response = await _userServiceClient.SendLinkToRedefinePassword(input);
 
-                if (response.Success)                
-                    return RedirectToAction("Index", "Login");                
+                if (response.Success)
+                    return RedirectToAction("Index", "Login");
 
                 TempData["ErrorMessage"] = response.ErrorMessage!;
             }

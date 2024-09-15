@@ -12,8 +12,8 @@ public class MapperInputEntity : Profile
         CreateMap<InputCreateUser, User>().ReverseMap();
         #endregion
 
-        #region Scheduled
-        CreateMap<InputCreateScheduled, Scheduled>().ReverseMap();
+        #region Scheduling
+        CreateMap<InputCreateScheduling, Scheduling>().ReverseMap();
         #endregion
     }
 }

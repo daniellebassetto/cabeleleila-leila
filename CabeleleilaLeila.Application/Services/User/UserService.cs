@@ -17,7 +17,7 @@ public class UserService(IUnitOfWork unitOfWork, IEmail email) : BaseService<IUs
         if (originalUser is not null)
             throw new InvalidOperationException($"Email '{inputCreate.Email}' já cadastrado na base de dados.");
 
-        if(inputCreate.Password != inputCreate.ConfirmPassword)
+        if (inputCreate.Password != inputCreate.ConfirmPassword)
             throw new InvalidOperationException($"Confirmação de senha não coincide com senha.");
 
         User user = FromInputCreateToEntity(inputCreate).SetProperty(nameof(User.Type), EnumTypeUser.Default);
@@ -42,7 +42,7 @@ public class UserService(IUnitOfWork unitOfWork, IEmail email) : BaseService<IUs
     {
         User? originalUser = _repository!.Get(x => x.Id == id) ?? throw new KeyNotFoundException($"Não foi encontrado nenhum usuário correspondente a este Id.");
 
-        if (originalUser.ListScheduled?.Count > 0)
+        if (originalUser.ListScheduling?.Count > 0)
             throw new InvalidOperationException($"Esse usuário possui vínculo com agendamentos");
 
         _repository.Delete(originalUser);

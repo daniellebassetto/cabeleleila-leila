@@ -12,8 +12,8 @@ public class MapperEntityOutput : Profile
         CreateMap<User, OutputUser>().ReverseMap();
         #endregion
 
-        #region Scheduled
-        CreateMap<Scheduled, OutputScheduled>().ReverseMap();
+        #region Scheduling
+        CreateMap<Scheduling, OutputScheduling>().ReverseMap();
         #endregion
     }
 }

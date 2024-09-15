@@ -3,4 +3,4 @@ using CabeleleilaLeila.Domain.Entities;
 
 namespace CabeleleilaLeila.Domain.Interfaces;
 
-public interface IScheduledRepository : IBaseRepository<Scheduled, InputIdentifierScheduled> { }
+public interface ISchedulingRepository : IBaseRepository<Scheduling, InputIdentifierScheduling> { }

@@ -7,7 +7,7 @@ namespace CabeleleilaLeila.Infraestructure;
 public class CabeleleilaLeilaContext : DbContext
 {
     public DbSet<User> User { get; set; }
-    public DbSet<Scheduled> Scheduled { get; set; }
+    public DbSet<Scheduling> Scheduling { get; set; }
 
     public CabeleleilaLeilaContext() { }
 
@@ -16,7 +16,7 @@ public class CabeleleilaLeilaContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfiguration(new UserMap());
-        modelBuilder.ApplyConfiguration(new ScheduledMap());
+        modelBuilder.ApplyConfiguration(new SchedulingMap());
 
         base.OnModelCreating(modelBuilder);
     }

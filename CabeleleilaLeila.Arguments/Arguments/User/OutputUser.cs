@@ -11,5 +11,5 @@ public class OutputUser
     public EnumTypeUser? Type { get; set; }
     public string? Password { get; set; }
 
-    public List<OutputScheduled>? ListScheduled { get; set; }
+    public List<OutputScheduling>? ListScheduling { get; set; }
 }

@@ -10,7 +10,7 @@ public class UserMap : IEntityTypeConfiguration<User>
     {
         builder.ToTable("usuario");
 
-        builder.HasMany(x => x.ListScheduled).WithOne(x => x.User).HasForeignKey(x => x.UserId);
+        builder.HasMany(x => x.ListScheduling).WithOne(x => x.User).HasForeignKey(x => x.UserId);
 
         builder.HasKey(x => x.Id);
 

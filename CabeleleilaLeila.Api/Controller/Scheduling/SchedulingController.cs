@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CabeleleilaLeila.Api.Controllers;
 
 [Route("api/[controller]")]
-public class ScheduledController(IApiDataService apiDataService, IScheduledService service) : BaseController<IScheduledService, InputCreateScheduled, InputUpdateScheduled, OutputScheduled, InputIdentifierScheduled>(apiDataService, service)
+public class SchedulingController(IApiDataService apiDataService, ISchedulingService service) : BaseController<ISchedulingService, InputCreateScheduling, InputUpdateScheduling, OutputScheduling, InputIdentifierScheduling>(apiDataService, service)
 {
     [HttpPost("Cancel/{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
