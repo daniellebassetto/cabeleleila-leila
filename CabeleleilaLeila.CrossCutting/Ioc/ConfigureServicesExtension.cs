@@ -14,6 +14,7 @@ using CabeleleilaLeila.Domain.Interfaces;
 using CabeleleilaLeila.Infraestructure;
 using CabeleleilaLeila.Infraestructure.Repositories;
 using System.Threading.RateLimiting;
+using CabeleleilaLeila.Application.Helpers;
 
 namespace CabeleleilaLeila.CrossCutting.Ioc;
 
@@ -62,8 +63,9 @@ public static class ConfigureServicesExtension
 
         ServiceCollection.AddTransient<IUsuarioRepository, UsuarioRepository>();
         ServiceCollection.AddTransient<IAgendamentoRepository, AgendamentoRepository>();
-        ServiceCollection.AddTransient<IUnitOfWork, UnitOfWork>();
 
+        ServiceCollection.AddTransient<IUnitOfWork, UnitOfWork>();
+        ServiceCollection.AddTransient<IEmail, Email>();
         ServiceCollection.AddTransient<IApiDataService, ApiDataService>();
     }
 

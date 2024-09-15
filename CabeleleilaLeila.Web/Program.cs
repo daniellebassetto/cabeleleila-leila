@@ -9,9 +9,8 @@ builder.Services.AddAuthorizationCore();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 #region Configure Interface and Repository
-builder.Services.AddScoped<CabeleleilaLeila.Web.Helpers.ISession, Session>();
-builder.Services.AddScoped<IEmail, Email>();
-builder.Services.AddScoped<IUsuarioServiceClient, UsuarioServiceClient>();
+builder.Services.AddTransient<CabeleleilaLeila.Web.Helpers.ISession, Session>();
+builder.Services.AddTransient<IUsuarioServiceClient, UsuarioServiceClient>();
 #endregion
 
 builder.Services.AddHttpClient("API", client =>

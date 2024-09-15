@@ -8,4 +8,9 @@ public class UsuarioServiceClient(IHttpClientFactory factory) :  BaseServiceClie
     {
         return await HandleRequestAsync<OutputUsuario>(HttpMethod.Post, $"{_nameService}/Login", input);
     }
+
+    public async Task<BaseServiceClientResponse<OutputUsuario>> SendLinkToRedefinePassword(string email)
+    {
+        return await HandleRequestAsync<OutputUsuario>(HttpMethod.Post, $"{_nameService}/SendLinkToRedefinePassword/{email}", null);
+    }
 }

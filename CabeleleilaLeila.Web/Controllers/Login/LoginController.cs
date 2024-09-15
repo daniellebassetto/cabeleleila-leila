@@ -1,16 +1,14 @@
 ﻿using CabeleleilaLeila.Arguments;
-using CabeleleilaLeila.Web.Helpers;
 using CabeleleilaLeila.Web.Services;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
 namespace CabeleleilaLeila.Controllers;
 
-public class LoginController(IUsuarioServiceClient usuarioServiceClient, Web.Helpers.ISession session, IEmail email) : Controller
+public class LoginController(IUsuarioServiceClient usuarioServiceClient, Web.Helpers.ISession session) : Controller
 {
     private readonly IUsuarioServiceClient _usuarioServiceClient = usuarioServiceClient;
     private readonly Web.Helpers.ISession _session = session;
-    private readonly IEmail _email = email;
 
     public IActionResult Index()
     {
@@ -59,43 +57,29 @@ public class LoginController(IUsuarioServiceClient usuarioServiceClient, Web.Hel
         return RedirectToAction("Index", "Login");
     }
 
-    //[HttpPost]
-    //public IActionResult SendLinkToRedefinePassword(RedefinePasswordLoginModel redefinePasswordModel)
-    //{
-    //    try
-    //    {
-    //        if (ModelState.IsValid)
-    //        {
-    //            UserModel user = _usuarioServiceClient.GetLoginAndEmail(redefinePasswordModel.Login, redefinePasswordModel.Email);
+    [HttpPost]
+    public IActionResult SendLinkToRedefinePassword(string email)
+    {
+        try
+        {
+            if (ModelState.IsValid)
+            {
+                var response = _usuarioServiceClient.SendLinkToRedefinePassword(email!).Result;
 
-    //            if (user != null)
-    //            {
-    //                string newPassword = user.GenerateNewPassword();
-    //                string message = $"Sua nova senha é: {newPassword}";
-    //                bool emailSent = _email.Send(user.Email, "CabeleleilaLeila - Nova Senha", message);
+                if (response.Success)
+                {
+                    return RedirectToAction("Index", "Login");
+                }
 
-    //                if (emailSent)
-    //                {
-    //                    _usuarioServiceClient.Update(user);
-    //                    TempData["SuccessMessage"] = $"Enviamos para seu e-mail cadastrado uma nova senha.";
-    //                }
-    //                else
-    //                {
-    //                    TempData["ErrorMessage"] = $"Ocorreu um erro ao enviar o e-mail. Tente novamente.";
-    //                }
+                TempData["ErrorMessage"] = response.ErrorMessage!;
+            }
 
-    //                return RedirectToAction("Index", "Login");
-    //            }
-
-    //            TempData["ErrorMessage"] = $"Não foi possível redefinir sua senha. Verifique os dados informados.";
-    //        }
-
-    //        return View("Index");
-    //    }
-    //    catch (Exception ex)
-    //    {
-    //        TempData["ErrorMessage"] = $"Erro: {ex.Message}";
-    //        return RedirectToAction("Index");
-    //    }
-    //}
+            return View("Index");
+        }
+        catch (Exception ex)
+        {
+            TempData["ErrorMessage"] = $"Erro: {ex.Message}";
+            return RedirectToAction("Index");
+        }
+    }
 }

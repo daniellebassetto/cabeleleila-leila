@@ -2,11 +2,14 @@
 using CabeleleilaLeila.Domain.Entities;
 using CabeleleilaLeila.Domain.Interfaces;
 using CabeleleilaLeila.Application.Interfaces;
+using CabeleleilaLeila.Application.Helpers;
 
 namespace CabeleleilaLeila.Application.Services;
 
-public class UsuarioService(IUnitOfWork unitOfWork) : BaseService<IUsuarioRepository, InputCreateUsuario, InputUpdateUsuario, Usuario, OutputUsuario, InputIdentifierUsuario>(unitOfWork), IUsuarioService
+public class UsuarioService(IUnitOfWork unitOfWork, IEmail email) : BaseService<IUsuarioRepository, InputCreateUsuario, InputUpdateUsuario, Usuario, OutputUsuario, InputIdentifierUsuario>(unitOfWork), IUsuarioService
 {
+    private readonly IEmail _email = email;
+
     public override OutputUsuario Create(InputCreateUsuario inputCreate)
     {
         Usuario? originalCustomer = _repository!.GetByIdentifier(new InputIdentifierUsuario(inputCreate.Email!));
@@ -49,12 +52,34 @@ public class UsuarioService(IUnitOfWork unitOfWork) : BaseService<IUsuarioReposi
     {
         var user = _repository!.GetByIdentifier(new InputIdentifierUsuario(input.Email!));
 
-        if(user != null)
+        if (user != null)
         {
             if (user.Senha == input.Senha)
                 return FromEntityToOutput(user);
             else
                 throw new InvalidOperationException("Senha inválida.");
+        }
+
+        throw new InvalidOperationException("Email inválido.");
+    }
+
+    public bool SendLinkToRedefinePassword(string email)
+    {
+        var user = _repository!.GetByIdentifier(new InputIdentifierUsuario(email));
+
+        if (user != null)
+        {
+            string newPassword = Guid.NewGuid().ToString()[..8];
+            user.SetProperty(nameof(Usuario.Senha), newPassword);
+            bool sent = _email.Send(user.Email!, "ZombieLab - Nova Senha", $"Sua nova senha é: {newPassword}");
+            if (sent)
+            {
+                _repository.Update(user);
+                _unitOfWork!.Commit();
+                return true;
+            }
+            else
+                throw new InvalidOperationException("Ocorreu um erro ao enviar o e-mail. Tente novamente.");
         }
 
         throw new InvalidOperationException("Email inválido.");

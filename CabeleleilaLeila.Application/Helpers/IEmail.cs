@@ -1,4 +1,4 @@
-﻿namespace CabeleleilaLeila.Web.Helpers;
+﻿namespace CabeleleilaLeila.Application.Helpers;
 
 public interface IEmail
 {

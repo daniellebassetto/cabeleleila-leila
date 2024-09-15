@@ -2,7 +2,7 @@
 
 namespace CabeleleilaLeila.Web.Services;
 
-public class BaseServiceClient<TInputCreate, TInputUpdate, TOutput, TIdentifier>(IHttpClientFactory factory)
+public class BaseServiceClient<TInputCreate, TInputUpdate, TOutput, TInputIdentifier>(IHttpClientFactory factory) : IBaseServiceClient<TInputCreate, TInputUpdate, TOutput, TInputIdentifier>
 {
     private readonly HttpClient _httpClient = factory.CreateClient("API");
     protected readonly string _nameService = typeof(TOutput).Name[6..];
@@ -15,6 +15,11 @@ public class BaseServiceClient<TInputCreate, TInputUpdate, TOutput, TIdentifier>
     public async Task<BaseServiceClientResponse<TOutput>> GetById(long id)
     {
         return await HandleRequestAsync<TOutput>(HttpMethod.Get, $"{_nameService}/{id}", null);
+    }
+
+    public async Task<BaseServiceClientResponse<TOutput>> GetByIdentifier(TInputIdentifier inputIdentifier)
+    {
+        return await HandleRequestAsync<TOutput>(HttpMethod.Post, $"{_nameService}/GetByIdentifier", inputIdentifier);
     }
 
     public async Task<BaseServiceClientResponse<bool>> Create(TInputCreate inputCreate)

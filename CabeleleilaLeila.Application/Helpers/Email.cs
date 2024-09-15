@@ -1,7 +1,8 @@
-﻿using System.Net;
+﻿using Microsoft.Extensions.Configuration;
+using System.Net;
 using System.Net.Mail;
 
-namespace CabeleleilaLeila.Web.Helpers;
+namespace CabeleleilaLeila.Application.Helpers;
 
 public class Email(IConfiguration configuration) : IEmail
 {
@@ -15,7 +16,7 @@ public class Email(IConfiguration configuration) : IEmail
             string name = _configuration["SMTP:Name"]!;
             string userName = _configuration["SMTP:UserName"]!;
             string password = _configuration["SMTP:Password"]!;
-            int port = _configuration.GetValue<int>("SMTP:Port");
+            int port = Convert.ToInt32(_configuration["SMTP:Port"]);
 
             MailMessage mail = new()
             {

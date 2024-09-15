@@ -27,4 +27,22 @@ public class UsuarioController(IApiDataService apiDataService, IUsuarioService s
             return await ResponseExceptionAsync(ex);
         }
     }
+
+    [HttpPost("SendLinkToRedefinePassword/{email}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType<BaseResponseApi<string>>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<BaseResponseApi<string>>(StatusCodes.Status404NotFound)]
+    public async Task<ActionResult<BaseResponseApi<OutputUsuario>>> SendLinkToRedefinePassword([FromRoute] string email)
+    {
+        try
+        {
+            var result = _service!.SendLinkToRedefinePassword(email);
+
+            return await ResponseAsync(result);
+        }
+        catch (Exception ex)
+        {
+            return await ResponseExceptionAsync(ex);
+        }
+    }
 }
