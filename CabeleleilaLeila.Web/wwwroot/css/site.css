@@ -1,22 +1,65 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    html {
+        font-size: 16px;
+    }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
 }
+
+.field-validation-error {
+    color: red;
+    font-size: 12px;
+}
+
+.close-alert {
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    border-radius: 15px;
+    width: 30px;
+    height: 31px;
+}
+
+.offcanvas-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.login {
+    background-color: orange;- 
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.home {
+    background-image: url("../image/home.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.table-container {
+    display: flex;
+}
+
+    .table-container table {
+        flex: 1;
+        margin-right: 50px;
+    }
+
+        .table-container table thead {
+            background-color: #90EE90;
+        }

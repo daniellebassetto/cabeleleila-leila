@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    @model InputLoginUser
+    @{
+        Layout = "_LayoutLoggedOut";
+        ViewData["Title"] = "Login";
+    }
+</head>
+<body class="login">
+    <section class="vh-100 d-flex justify-content-center align-items-center">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+            <div class="card-body p-5" style="background-color: transparent;">
+
+                @if (TempData["SuccessMessage"] != null)
+                {
+                    <div class="alert alert-success" role="alert">
+                        <button type="button" class="btn btn-success btn-sm close-alert" arial-label="Close">X</button>
+                        @TempData["SuccessMessage"]
+                    </div>
+                }
+
+                @if (TempData["ErrorMessage"] != null)
+                {
+                    <div class="alert alert-danger" role="alert">
+                        <button type="button" class="btn btn-danger btn-sm close-alert" data-bs-dismiss="alert" aria-label="Close">X</button>
+                        @TempData["ErrorMessage"]
+                    </div>
+                }
+
+                <h1 class="mb-5 text-center" style="color: black; font-weight: 800;">Cabeleleila Leila</h1>
+                <form asp-controller="Login" asp-action="Enter" method="post">
+                    <div class="form-outline mb-4">
+                        <label for="email" name="email" class="form-label" style="font-size:large; font-weight: 800;">Email</label>
+                        <input type="text" asp-for="Email" class="form-control" id="email" placeholder="Informe o login">
+                        @Html.ValidationMessageFor(x => x.Email)
+                    </div>
+                    <div class="form-outline mb-4">
+                        <label for="password" name="password" class="form-label" style="font-size:large; font-weight: 800;">Senha</label>
+                        <div class="input-group">
+                            <input type="password" asp-for="Password" class="form-control" id="password" placeholder="Informe a senha">
+                            <button class="btn btn-outline-secondary" type="button" id="showHidePassword">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                        @Html.ValidationMessageFor(x => x.Password)
+                    </div>
+
+                    <p class="mb-4 text-sm mx-auto" style="color: #fff">
+                        Esqueceu sua senha?
+                        <a asp-action="RedefinePassword" asp-controller="Login" class="text-primary text-gradient font-weight-bold">Redefinir senha</a>
+                    </p>
+
+                    <button type="submit" class="btn btn-lg btn-block w-100" style="background: #2BFDBE;">Login</button>
+                </form>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

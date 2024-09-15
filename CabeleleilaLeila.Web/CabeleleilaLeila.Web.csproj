@@ -10,8 +10,4 @@
 		<ProjectReference Include="..\CabeleleilaLeila.Arguments\CabeleleilaLeila.Arguments.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Services\Agendamento\" />
-	</ItemGroup>
-
 </Project>

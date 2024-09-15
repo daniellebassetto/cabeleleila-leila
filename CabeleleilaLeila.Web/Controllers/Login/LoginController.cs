@@ -5,9 +5,9 @@ using Newtonsoft.Json;
 
 namespace CabeleleilaLeila.Controllers;
 
-public class LoginController(IUsuarioServiceClient usuarioServiceClient, Web.Helpers.ISession session) : Controller
+public class LoginController(IUserServiceClient userServiceClient, Web.Helpers.ISession session) : Controller
 {
-    private readonly IUsuarioServiceClient _usuarioServiceClient = usuarioServiceClient;
+    private readonly IUserServiceClient _userServiceClient = userServiceClient;
     private readonly Web.Helpers.ISession _session = session;
 
     public IActionResult Index()
@@ -29,7 +29,7 @@ public class LoginController(IUsuarioServiceClient usuarioServiceClient, Web.Hel
         {
             if (ModelState.IsValid)
             {
-                var response = _usuarioServiceClient.Login(input).Result;
+                var response = _userServiceClient.Login(input).Result;
 
                 if (response.Success)
                 {
@@ -58,13 +58,13 @@ public class LoginController(IUsuarioServiceClient usuarioServiceClient, Web.Hel
     }
 
     [HttpPost]
-    public IActionResult SendLinkToRedefinePassword(string email)
+    public IActionResult SendLinkToRedefinePassword(InputSendLinkToRedefinePasswordUser input)
     {
         try
         {
             if (ModelState.IsValid)
             {
-                var response = _usuarioServiceClient.SendLinkToRedefinePassword(email!).Result;
+                var response = _userServiceClient.SendLinkToRedefinePassword(input).Result;
 
                 if (response.Success)
                 {

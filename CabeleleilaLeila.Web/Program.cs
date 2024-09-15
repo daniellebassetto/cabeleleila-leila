@@ -9,14 +9,20 @@ builder.Services.AddAuthorizationCore();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 #region Configure Interface and Repository
-builder.Services.AddTransient<CabeleleilaLeila.Web.Helpers.ISession, Session>();
-builder.Services.AddTransient<IUsuarioServiceClient, UsuarioServiceClient>();
+builder.Services.AddScoped<CabeleleilaLeila.Web.Helpers.ISession, Session>();
+builder.Services.AddScoped<IUserServiceClient, UserServiceClient>();
 #endregion
 
 builder.Services.AddHttpClient("API", client =>
 {
     client.BaseAddress = new Uri(builder.Configuration["CabeleleilaLeilaApi:Url"]!);
     client.DefaultRequestHeaders.Add("Accept", "application/json");
+});
+
+builder.Services.AddSession(o =>
+{
+    o.Cookie.HttpOnly = true;
+    o.Cookie.IsEssential = true;
 });
 
 var app = builder.Build();
@@ -34,8 +40,10 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+app.UseSession();
+
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Login}/{action=Index}/{id?}");
 
 app.Run();

@@ -8,12 +8,12 @@ public class MapperEntityOutput : Profile
 {
     public MapperEntityOutput()
     {
-        #region Usuario
-        CreateMap<Usuario, OutputUsuario>().ReverseMap();
+        #region User
+        CreateMap<User, OutputUser>().ReverseMap();
         #endregion
-        
-        #region Agendamento
-        CreateMap<Agendamento, OutputAgendamento>().ReverseMap();
+
+        #region Scheduled
+        CreateMap<Scheduled, OutputScheduled>().ReverseMap();
         #endregion
     }
 }

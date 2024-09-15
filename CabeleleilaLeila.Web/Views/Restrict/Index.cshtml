@@ -1,0 +1,15 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        @{
+            Layout = "_LayoutLoggedOut";
+            ViewData["Title"] = "Página Restrita";
+        }
+    </head>
+    <body>
+        <div class="text-center">
+            <p>Usuário não possui permissão para acessar essa página</p>
+            <a asp-controller="Home" , asp-action="Index">Voltar</a>
+        </div>
+    </body>
+</html>

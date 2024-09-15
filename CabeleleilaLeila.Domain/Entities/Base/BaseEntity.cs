@@ -8,19 +8,19 @@ public class BaseEntity<TEntity> : BaseSetProperty<TEntity>
 {
     [Required]
     public virtual long? Id { get; set; }
-    public virtual DateTime? DataCadastro { get; set; }
-    public virtual DateTime? DataAlteracao { get; set; }
+    public virtual DateTime? CreationDate { get; set; }
+    public virtual DateTime? ChangeDate { get; set; }
 
     public TEntity SetCreateData()
     {
-        DataCadastro = DateTime.Now;
+        CreationDate = DateTime.Now;
 
         return (this as TEntity)!;
     }
 
     public TEntity SetUpdateData()
     {
-        DataAlteracao = DateTime.Now;
+        ChangeDate = DateTime.Now;
 
         return (this as TEntity)!;
     }
