@@ -22,7 +22,7 @@ body {
 .register-left {
     flex: 1;
     padding: 60px;
-    background-color: #fff;
+    background-color: black;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -33,6 +33,7 @@ body {
     margin-bottom: 20px;
     text-align: center;
     font-size: 40px;
+    color: white;
 }
 
 .register-right {

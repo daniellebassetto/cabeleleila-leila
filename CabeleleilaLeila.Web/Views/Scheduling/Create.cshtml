@@ -1,0 +1,61 @@
+﻿@using System.ComponentModel.DataAnnotations
+@using System.Reflection
+<!DOCTYPE html>
+<html>
+<head>
+    @model InputCreateScheduling
+    @{
+        ViewData["Title"] = "Criar agendamento";
+    }
+</head>
+<body>
+    <div class="container">
+        <div class="text-center mb-4">
+            <h1 class="display-4">Criar Agendamento</h1>
+        </div>
+
+        <div class="p-4 rounded-3 shadow-sm mx-auto" style="max-width: 800px; background-color: #ECA02D;">
+            <form asp-controller="Scheduling" asp-action="Create" method="post">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="datetime" class="form-label">Data e Hora</label>
+                        @Html.ValidationMessageFor(x => x.DateTime, "", new { @class = "text-danger" })
+                        <input type="datetime-local" asp-for="DateTime" class="form-control" placeholder="Informe a data e hora do agendamento">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="service" class="form-label">Serviço</label>
+                        @Html.ValidationMessageFor(x => x.Service, "", new { @class = "text-danger" })
+                        <select asp-for="Service" class="form-select">
+                            <option value="">Selecione</option>
+                            @foreach (var service in Enum.GetValues(typeof(EnumServiceScheduling)))
+                            {
+                                var displayAttribute = service.GetType()
+                                .GetMember(service.ToString()!)
+                                .First()
+                                .GetCustomAttribute<DisplayAttribute>();
+
+                                string? displayName = displayAttribute != null ? displayAttribute.Name : service.ToString();
+
+                                <option value="@service">@displayName</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="observation" class="form-label">Observação</label>
+                    @Html.ValidationMessageFor(x => x.Observation, "", new { @class = "text-danger" })
+                    <textarea asp-for="Observation" class="form-control" rows="5" placeholder="Escreva uma observação"></textarea>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-save"></i> Salvar
+                    </button>
+                    <a class="btn btn-danger" role="button" asp-controller="Scheduling" asp-action="Index">
+                        <i class="bi bi-arrow-left-circle"></i> Voltar
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

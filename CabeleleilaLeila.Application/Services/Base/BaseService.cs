@@ -24,9 +24,9 @@ public class BaseService<TIBaseRepository, TInputCreate, TInputUpdate, TEntity, 
     }
 
     #region Read
-    public virtual IEnumerable<TOutput>? GetAll()
+    public virtual List<TOutput>? GetAll()
     {
-        var listEntity = _repository!.GetAll();
+        var listEntity = _repository!.GetAll()?.ToList();
         return listEntity != null ? FromEntityToOutput(listEntity) : null;
     }
 
@@ -97,9 +97,9 @@ public class BaseService<TIBaseRepository, TInputCreate, TInputUpdate, TEntity, 
         return ApiData.Mapper!.MapperEntityOutput.Map<TEntity, TOutput>(entity);
     }
 
-    public IEnumerable<TOutput> FromEntityToOutput(IEnumerable<TEntity> listEntity)
+    public List<TOutput> FromEntityToOutput(List<TEntity> listEntity)
     {
-        return ApiData.Mapper!.MapperEntityOutput.Map<IEnumerable<TEntity>, IEnumerable<TOutput>>(listEntity);
+        return ApiData.Mapper!.MapperEntityOutput.Map<List<TEntity>, List<TOutput>>(listEntity);
     }
 
     public TEntity FromOutputToEntity(TOutput output)

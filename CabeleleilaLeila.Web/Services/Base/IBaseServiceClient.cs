@@ -2,7 +2,7 @@
 
 public interface IBaseServiceClient<TInputCreate, TInputUpdate, TOutput, TInputIdentifier>
 {
-    Task<BaseServiceClientResponse<ICollection<TOutput>>> GetAll();
+    Task<BaseServiceClientResponse<List<TOutput>>> GetAll();
     Task<BaseServiceClientResponse<TOutput>> GetById(long id);
     Task<BaseServiceClientResponse<TOutput>> GetByIdentifier(TInputIdentifier inputIdentifier);
     Task<BaseServiceClientResponse<TOutput>> Create(TInputCreate inputCreate);

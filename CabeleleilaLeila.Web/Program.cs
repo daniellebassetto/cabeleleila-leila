@@ -11,6 +11,7 @@ builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 #region Configure Interface and Repository
 builder.Services.AddScoped<CabeleleilaLeila.Web.Helpers.ISession, Session>();
 builder.Services.AddScoped<IUserServiceClient, UserServiceClient>();
+builder.Services.AddScoped<ISchedulingServiceClient, SchedulingServiceClient>();
 #endregion
 
 builder.Services.AddHttpClient("API", client =>

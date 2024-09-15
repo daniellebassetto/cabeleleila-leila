@@ -6,7 +6,7 @@ public interface IBaseService<TInputCreate, TInputUpdate, TOutput, TInputIdentif
    where TOutput : class
    where TInputIdentifier : class
 {
-    IEnumerable<TOutput>? GetAll();
+    List<TOutput>? GetAll();
     TOutput? Get(long id);
     TOutput? GetByIdentifier(TInputIdentifier inputIdentifier);
     TOutput? Create(TInputCreate entity);

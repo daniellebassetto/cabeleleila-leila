@@ -7,8 +7,10 @@ public class InputCreateScheduling
 {
     [Required(ErrorMessage = "Campo obrigatório")]
     public long? UserId { get; set; }
+    
     [Required(ErrorMessage = "Campo obrigatório")]
     public DateTime? DateTime { get; set; }
+
     [Required(ErrorMessage = "Campo obrigatório")]
     public EnumServiceScheduling Service { get; set; }
 

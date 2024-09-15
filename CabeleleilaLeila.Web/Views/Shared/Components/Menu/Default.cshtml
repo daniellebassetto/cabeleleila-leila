@@ -4,38 +4,43 @@
     @model OutputUser
 </head>
 <body>
-    <div style="background-color: #19332A; width: 250px;" class="offcanvas offcanvas-start" id="offcanvas" data-bs-keyboard="false" data-bs-backdrop="false">
+    <div style="background-color: #ECA02D; width: 250px;" class="offcanvas offcanvas-start" id="offcanvas" data-bs-keyboard="false" data-bs-backdrop="false">
         <div class="offcanvas-header">
-            <h4 class="offcanvas-title d-none d-sm-block" style="color: #2BFDBE; font-weight: 800;" id="offcanvas">Cabeleleila Leila</h4>
-            <button type="button" class="btn-close btn-close-white text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            <h4 class="offcanvas-title d-none d-sm-block" style="font-weight: 800;" id="offcanvas">Cabeleleila Leila</h4>
+            <button type="button" class="btn-close btn-close-black text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <nav class="offcanvas-body px-0">
             <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-start" id="menu">
                 <li class="nav-item">
-                    <a asp-area="" asp-controller="Home" asp-action="Index" class="nav-link text-truncate" style="color: white; font-size: 20px;">
-                        <i class="fs-5 bi-house"></i><span class="ms-1 d-none d-sm-inline">Home</span>
+                    <a asp-area="" asp-controller="Home" asp-action="Index" class="nav-link text-truncate" style="color: black; font-size: 20px;">
+                        <i class="fs-1 bi-house"></i><span class="ms-1 d-none d-sm-inline">Home</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a asp-area="" asp-controller="Scheduling" asp-action="Index" class="nav-link text-truncate" style="color: black; font-size: 20px;">
+                        <i class="fs-1 bi bi-calendar-check"></i><span class="ms-1 d-none d-sm-inline">Agendamentos</span>
                     </a>
                 </li>
             </ul>
             <hr style="color: wheat;">
             <div class="dropdown pb-4">
-                <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                    <span class="d-none d-sm-inline mx-3" style="color: white; font-size: 20px;">Olá, @Model.Name! </span>
+                <a href="#" class="d-flex align-items-center text-black text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="d-none d-sm-inline mx-3" style="color: black; font-size: 20px;">Olá, @Model.Name! </span>
                 </a>
-                <ul class="dropdown-menu dropdown-menu-dark text-small shadow dropdown-menu-md-end">
+                <ul class="dropdown-menu dropdown-menu text-small shadow dropdown-menu-md-end">
                     <li>
-                        <a class="dropdown-item" asp-area="" asp-controller="User" asp-action="Index" style="color: white;">
+                        <a class="dropdown-item" asp-area="" asp-controller="User" asp-action="Index" style="color: black;">
                             <span class="ms-1 d-none d-sm-inline">Usuário</span>
                         </a>
                     </li>
                     <li>
-                        <a asp-area="" asp-controller="RedefinePassword" asp-action="Index" class="dropdown-item" style="color: white;">Redefinir Senha</a>
+                        <a asp-area="" asp-controller="RedefinePassword" asp-action="Index" class="dropdown-item" style="color: black;">Redefinir Senha</a>
                     </li>
                     <li>
                         <hr class="dropdown-divider">
                     </li>
                     <li>
-                        <a asp-area="" asp-controller="Login" asp-action="Exit" class="dropdown-item" style="color: white;">Sair</a>
+                        <a asp-area="" asp-controller="Login" asp-action="Exit" class="dropdown-item" style="color: black;">Sair</a>
                     </li>
                 </ul>
             </div>
@@ -44,8 +49,8 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col p-4">
-                <button class="btn float" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" role="button" style="background-color: #19332A;">
-                    <i class="bi bi-list fs-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" style="color: #2BFDBE;"></i>
+                <button class="btn float" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" role="button" style="background-color: #ECA02D;">
+                    <i class="bi bi-list fs-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvas"></i>
                 </button>
             </div>
         </div>

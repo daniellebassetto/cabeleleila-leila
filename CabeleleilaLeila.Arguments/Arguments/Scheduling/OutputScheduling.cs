@@ -11,5 +11,5 @@ public class OutputScheduling
     public EnumStatusScheduling Status { get; set; }
     public string? Observation { get; set; }
 
-    public OutputUser? User { get; private set; }
+    public OutputUser? User { get; set; }
 }

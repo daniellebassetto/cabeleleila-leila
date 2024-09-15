@@ -1,0 +1,98 @@
+﻿@using System.ComponentModel.DataAnnotations;
+<!DOCTYPE html>
+<html>
+<head>
+    @model List<OutputScheduling>
+    @{
+        ViewData["Title"] = "Listagem de Agendamentos";
+    }
+</head>
+<body>
+    <div class="text-center">
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success" role="alert">
+                <button type="button" class="btn btn-success btn-sm close-alert" arial-label="Close">X</button>
+                @TempData["SuccessMessage"]
+            </div>
+        }
+
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+                @TempData["ErrorMessage"]
+            </div>
+        }
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-1">
+            <a class="btn btn-success" role="button" asp-controller="Scheduling" asp-action="Create">Adicionar</a>
+        </div>
+
+        <h1 class="display-4">Listagem de Agendamentos</h1>
+
+        <table class="table" id="scheduling-table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col"></th>
+                    <th scope="col">Cliente</th>
+                    <th scope="col">Data</th>
+                    <th scope="col">Serviço</th>
+                    <th scope="col">Status</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    @foreach (OutputScheduling scheduling in Model)
+                    {
+                        <tr>
+                            <td>@(Model.IndexOf(scheduling) + 1)</td>
+                            <td style="text-align: center; vertical-align: middle;">
+                                @if (scheduling.Status == EnumStatusScheduling.WaitingConfirmation)
+                                {
+                                    <span style="display:inline-block; width: 20px; height: 20px; border-radius: 50%; background-color: yellow;"></span>
+                                }
+                                else if (scheduling.Status == EnumStatusScheduling.Confirmed)
+                                {
+                                    <span style="display:inline-block; width: 20px; height: 20px; border-radius: 50%; background-color: green;"></span>
+                                }
+                                else
+                                {
+                                    <span style="display:inline-block; width: 20px; height: 20px; border-radius: 50%; background-color: red;"></span>
+                                }
+                            </td>
+                            <td>@scheduling.User!.Name</td>
+                            <td>@scheduling.DateTime</td>
+                            <td>@(((DisplayAttribute)scheduling.Service.GetType().GetMember(scheduling.Service.ToString())[0].GetCustomAttributes(typeof(DisplayAttribute), false).FirstOrDefault()!).Name)</td>
+                            <td>@(((DisplayAttribute)scheduling.Status.GetType().GetMember(scheduling.Status.ToString())[0].GetCustomAttributes(typeof(DisplayAttribute), false).FirstOrDefault()!).Name)</td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <a role="button" class="btn btn-primary" asp-route-id="@scheduling.Id" asp-controller="Scheduling" asp-action="Update" title="Editar">
+                                        <i class="bi bi-pencil-square fs-6"></i>
+                                    </a>
+                                    <a role="button" class="btn btn-danger" asp-route-id="@scheduling.Id" asp-controller="Scheduling" asp-action="Cancel" title="Cancelar">
+                                        <i class="bi bi-dash-circle-fill"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr class="odd">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>Nenhum agendamento cadastrado</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+</body>
+</html>

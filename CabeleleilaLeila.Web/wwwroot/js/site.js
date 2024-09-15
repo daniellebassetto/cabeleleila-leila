@@ -1,5 +1,6 @@
 ﻿$(document).ready(function () {
     getDataTable('#user-table')
+    getDataTable('#scheduling-table')
 });
 
 function getDataTable(id) {

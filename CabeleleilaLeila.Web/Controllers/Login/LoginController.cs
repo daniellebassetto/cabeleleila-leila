@@ -3,12 +3,12 @@ using CabeleleilaLeila.Web.Services;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
-namespace CabeleleilaLeila.Controllers;
+namespace CabeleleilaLeila.Web.Controllers;
 
-public class LoginController(IUserServiceClient userServiceClient, Web.Helpers.ISession session) : Controller
+public class LoginController(IUserServiceClient userServiceClient, Helpers.ISession session) : Controller
 {
     private readonly IUserServiceClient _userServiceClient = userServiceClient;
-    private readonly Web.Helpers.ISession _session = session;
+    private readonly Helpers.ISession _session = session;
 
     public IActionResult Index()
     {

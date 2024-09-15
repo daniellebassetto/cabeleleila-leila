@@ -7,9 +7,9 @@ public class BaseServiceClient<TInputCreate, TInputUpdate, TOutput, TInputIdenti
     private readonly HttpClient _httpClient = factory.CreateClient("API");
     protected readonly string _nameService = typeof(TOutput).Name[6..];
 
-    public async Task<BaseServiceClientResponse<ICollection<TOutput>>> GetAll()
+    public async Task<BaseServiceClientResponse<List<TOutput>>> GetAll()
     {
-        return await HandleRequestAsync<ICollection<TOutput>>(HttpMethod.Get, $"{_nameService}", null);
+        return await HandleRequestAsync<List<TOutput>>(HttpMethod.Get, $"{_nameService}", null);
     }
 
     public async Task<BaseServiceClientResponse<TOutput>> GetById(long id)
