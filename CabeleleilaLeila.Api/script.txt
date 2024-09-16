@@ -1,0 +1,30 @@
+CREATE DATABASE cabeleleila_leila;
+
+USE cabeleleila_leila;
+
+CREATE TABLE usuario (
+	id BIGINT NOT NULL PRIMARY KEY auto_increment,
+    data_cadastro DATETIME NOT NULL,
+    data_alteracao DATETIME,
+    nome VARCHAR(80) NOT NULL,
+    celular VARCHAR(13) NOT NULL,
+    email VARCHAR(256) NOT NULL,
+    tipo INT NOT NULL,
+    senha VARCHAR(100) NOT NULL
+);
+
+INSERT INTO usuario VALUES (1, NOW(), NULL, 'Leila', '5514991234567', 'cabeleleila@outlook.com', 0, '1234');
+
+CREATE TABLE agendamento (
+	id BIGINT NOT NULL PRIMARY KEY auto_increment,
+    data_cadastro DATETIME NOT NULL,
+    data_alteracao DATETIME,
+    numero INT NOT NULL,
+    id_usuario BIGINT NOT NULL,
+    data_hora DATETIME NOT NULL,
+    servico INT NOT NULL,
+    status INT NOT NULL,
+    observacao VARCHAR(1000),
+    CONSTRAINT fk_usuario FOREIGN KEY(id_usuario) REFERENCES usuario(id)
+);
+

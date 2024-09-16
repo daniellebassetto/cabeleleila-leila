@@ -11,7 +11,7 @@ public class Menu : ViewComponent
         string? userSession = HttpContext.Session.GetString("loggedUserSession");
 
         if (string.IsNullOrEmpty(userSession))
-            return Content("Usuário não logado.");
+            return null;
 
         OutputUser user = JsonConvert.DeserializeObject<OutputUser>(userSession)!;
 
