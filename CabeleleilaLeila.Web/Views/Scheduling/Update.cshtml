@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    @model InputCreateScheduling
+    @model InputUpdateScheduling
     @{
-        ViewData["Title"] = "Criar agendamento";
+        ViewData["Title"] = "Atualizar agendamento";
     }
 </head>
 <body>
@@ -27,12 +27,11 @@
         }
 
         <div class="text-center mb-4">
-            <h1 class="display-4">Criar Agendamento</h1>
+            <h1 class="display-4">Atualizar Agendamento</h1>
         </div>
 
         <div class="p-4 rounded-3 shadow-sm mx-auto" style="max-width: 800px; background-color: #ECA02D;">
-            <form asp-controller="Scheduling" asp-action="Create" method="post">
-                <input type="hidden" asp-for="UserId" value="@ViewBag.UserId" />
+            <form asp-controller="Scheduling" asp-action="Update" method="post">
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="datetime" class="form-label">Data e Hora</label>

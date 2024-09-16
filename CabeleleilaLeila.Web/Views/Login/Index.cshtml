@@ -34,11 +34,11 @@
             }
             <div class="login-card">
                 <h2>Login</h2>
-                <form asp-controller="Login" asp-action="Login" method="post">
+                <form asp-controller="Login" class="form-container" asp-action="Login" method="post">
                     <div class="input-group">
                         <label for="email" name="email">Email</label>
-                        <input type="text" asp-for="Email" id="email" placeholder="Informe o login">
-                        @Html.ValidationMessageFor(x => x.Email)
+                        <input type="email" asp-for="Email" id="email" placeholder="Informe seu email">
+                        @Html.ValidationMessageFor(x => x.Email, "", new { @class = "text-danger" })
                     </div>
                     <div class="input-group">
                         <label for="password" name="password">Senha</label>
@@ -48,7 +48,7 @@
                                 <i class="fa fa-eye" aria-hidden="true"></i>
                             </button>
                         </div>
-                        @Html.ValidationMessageFor(x => x.Password)
+                        @Html.ValidationMessageFor(x => x.Password, "", new { @class = "text-danger" })
                     </div>
                     <p>
                         Esqueceu sua senha?

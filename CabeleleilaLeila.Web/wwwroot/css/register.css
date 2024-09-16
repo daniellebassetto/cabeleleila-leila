@@ -22,7 +22,7 @@ body {
 .register-left {
     flex: 1;
     padding: 60px;
-    background-color: black;
+    background-color: #fff;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -33,7 +33,6 @@ body {
     margin-bottom: 20px;
     text-align: center;
     font-size: 40px;
-    color: white;
 }
 
 .register-right {
@@ -45,7 +44,7 @@ body {
 }
 
 .register-right .logo {
-    max-width: 80%;
+    max-width: 50%;
     height: auto;
     border-radius: 8px;
 }
@@ -101,13 +100,13 @@ h2 {
 }
 
 .input-group-showPassword {
-    width: 25%;
-    background-color: #007bff;
+    width: 15%;
+    background-color: #ECA02D;
     border: none;
 }
 
     .input-group-showPassword:hover {
-        background-color: #0056b3;
+        background-color: orange;
     }
 
 .button-group {
@@ -142,6 +141,27 @@ h2 {
     background-color: #218838;
 }
 
+.field-validation-error {
+    color: red;
+    font-size: 12px;
+}
+
+.close-alert {
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    padding: 0;
+    border: none;
+    background-color: red;
+}
+
 @media (max-width: 768px) {
     .register-wrapper {
         flex-direction: column;
@@ -166,18 +186,4 @@ h2 {
     .btn {
         padding: 10px;
     }
-}
-
-.field-validation-error {
-    color: red;
-    font-size: 12px;
-}
-
-.close-alert {
-    position: absolute;
-    right: -10px;
-    top: -10px;
-    border-radius: 15px;
-    width: 30px;
-    height: 31px;
 }

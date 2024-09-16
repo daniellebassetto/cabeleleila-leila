@@ -49,7 +49,7 @@ public class LoginController(IUserServiceClient userServiceClient, Helpers.ISess
     public IActionResult Exit()
     {
         _session.RemoveUserSession();
-        return RedirectToAction("Index", "Login");
+        return RedirectToAction("Index");
     }
 
     public IActionResult SendLinkToRedefinePassword()
@@ -67,7 +67,10 @@ public class LoginController(IUserServiceClient userServiceClient, Helpers.ISess
                 var response = await _userServiceClient.SendLinkToRedefinePassword(input);
 
                 if (response.Success)
-                    return RedirectToAction("Index", "Login");
+                {
+                    TempData["SuccessMessage"] = "Nova senha temporária enviada ao email cadastrado. Verifique sua caixa de entrada ou lixo eletrônico.";
+                    return RedirectToAction("Index");
+                }
 
                 TempData["ErrorMessage"] = response.ErrorMessage!;
             }
@@ -96,7 +99,10 @@ public class LoginController(IUserServiceClient userServiceClient, Helpers.ISess
                 var response = await _userServiceClient.Create(input);
 
                 if (response.Success)
+                {
+                    TempData["SuccessMessage"] = "Cadastro realizado com sucesso. Realize o login.";
                     return RedirectToAction("Index");
+                }
 
                 TempData["ErrorMessage"] = response.ErrorMessage!;
             }

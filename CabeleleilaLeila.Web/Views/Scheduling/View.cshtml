@@ -1,0 +1,99 @@
+﻿@using System.ComponentModel.DataAnnotations
+@using System.Reflection
+<!DOCTYPE html>
+<html>
+<head>
+    @model OutputScheduling
+    @{
+        ViewData["Title"] = "Visualizar agendamento";
+    }
+</head>
+<body>
+    <div class="container">
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success" role="alert">
+                <button type="button" class="btn btn-success btn-sm close-alert" arial-label="Close">X</button>
+                @TempData["SuccessMessage"]
+            </div>
+        }
+
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+                @TempData["ErrorMessage"]
+            </div>
+        }
+
+        <div class="text-center mb-4">
+            <h1 class="display-4">Visualizar Agendamento</h1>
+        </div>
+
+        <div class="p-4 rounded-3 shadow-sm mx-auto" style="max-width: 800px; background-color: #ECA02D;">
+            <form>
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <label for="customer" class="form-label">Nome do Cliente</label>
+                        <input type="text" asp-for="User!.Name" class="form-control" readonly>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="creationDate" class="form-label">Data de Criação</label>
+                        <input type="datetime-local" asp-for="CreationDate" class="form-control" readonly>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="changeDate" class="form-label">Data Última Alteração</label>
+                        @if (Model.ChangeDate.HasValue)
+                        {
+                            <input type="datetime-local" asp-for="ChangeDate" class="form-control" readonly>
+                        }
+                        else
+                        {
+                            <input type="text" class="form-control" readonly>
+                        }
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <label for="datetime" class="form-label">Data e Hora</label>
+                        <input type="datetime-local" asp-for="DateTime" class="form-control" readonly>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="service" class="form-label">Serviço</label>
+                        <select asp-for="Service" class="form-select" disabled>
+                            <option value="">Selecione</option>
+                            @foreach (var service in Enum.GetValues(typeof(EnumServiceScheduling)))
+                            {
+                                var displayAttribute = service.GetType().GetMember(service.ToString()!).First().GetCustomAttribute<DisplayAttribute>();
+                                string? displayName = displayAttribute != null ? displayAttribute.Name : service.ToString();
+                                <option value="@service">@displayName</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="status" class="form-label">Status</label>
+                        <select asp-for="Status" class="form-select" disabled>
+                            <option value="">Selecione</option>
+                            @foreach (var status in Enum.GetValues(typeof(EnumStatusScheduling)))
+                            {
+                                var displayAttribute = status.GetType().GetMember(status.ToString()!).First().GetCustomAttribute<DisplayAttribute>();
+                                string? displayName = displayAttribute != null ? displayAttribute.Name : status.ToString();
+                                <option value="@status">@displayName</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="observation" class="form-label">Observação</label>
+                    <textarea asp-for="Observation" class="form-control" rows="5" readonly>@Html.Encode(Model.Observation)</textarea>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <a class="btn btn-danger" role="button" asp-controller="Scheduling" asp-action="Index">
+                        <i class="bi bi-arrow-left-circle"></i> Voltar
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

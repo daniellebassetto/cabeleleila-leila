@@ -1,4 +1,6 @@
 ﻿@using System.ComponentModel.DataAnnotations;
+@using System;
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,9 +27,12 @@
             </div>
         }
 
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-1">
-            <a class="btn btn-success" role="button" asp-controller="Scheduling" asp-action="Create">Adicionar</a>
-        </div>
+        @if (ViewBag.UserType == EnumTypeUser.Default)
+        {
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-1">
+                <a class="btn btn-success" role="button" asp-controller="Scheduling" asp-action="Create">Adicionar</a>
+            </div>
+        }
 
         <h1 class="display-4">Listagem de Agendamentos</h1>
 
@@ -40,6 +45,7 @@
                     <th scope="col">Data</th>
                     <th scope="col">Serviço</th>
                     <th scope="col">Status</th>
+                    <th scope="col">Observação</th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -48,6 +54,8 @@
                 {
                     @foreach (OutputScheduling scheduling in Model)
                     {
+                        var canEdit = (scheduling.DateTime - DateTime.Now)!.Value.TotalDays >= 2;
+
                         <tr>
                             <td>@(Model.IndexOf(scheduling) + 1)</td>
                             <td style="text-align: center; vertical-align: middle;">
@@ -68,14 +76,38 @@
                             <td>@scheduling.DateTime</td>
                             <td>@(((DisplayAttribute)scheduling.Service.GetType().GetMember(scheduling.Service.ToString())[0].GetCustomAttributes(typeof(DisplayAttribute), false).FirstOrDefault()!).Name)</td>
                             <td>@(((DisplayAttribute)scheduling.Status.GetType().GetMember(scheduling.Status.ToString())[0].GetCustomAttributes(typeof(DisplayAttribute), false).FirstOrDefault()!).Name)</td>
+                            <td>@scheduling.Observation</td>
                             <td>
-                                <div class="btn-group" role="group">
-                                    <a role="button" class="btn btn-primary" asp-route-id="@scheduling.Id" asp-controller="Scheduling" asp-action="Update" title="Editar">
-                                        <i class="bi bi-pencil-square fs-6"></i>
-                                    </a>
-                                    <a role="button" class="btn btn-danger" asp-route-id="@scheduling.Id" asp-controller="Scheduling" asp-action="Cancel" title="Cancelar">
-                                        <i class="bi bi-dash-circle-fill"></i>
-                                    </a>
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi bi-list"></i>
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        @if (canEdit || ViewBag.UserType != EnumTypeUser.Default)
+                                        {
+                                            <li>
+                                                <a class="dropdown-item" asp-route-id="@scheduling.Id" asp-controller="Scheduling" asp-action="Update">Editar</a>
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li>
+                                                <span class="dropdown-item disabled" title="Edição disponível apenas via contato por telefone.">
+                                                    Editar
+                                                </span>
+                                            </li>
+                                        }
+
+                                        @if (ViewBag.UserType == EnumTypeUser.Admin)
+                                        {                                            
+                                            <li>
+                                                <a class="dropdown-item" asp-route-id="@scheduling.Id" asp-controller="Scheduling" asp-action="Confirm">Confirmar</a>
+                                            </li>
+                                        }
+                                        <li>
+                                            <a class="dropdown-item" asp-route-id="@scheduling.Id" asp-controller="Scheduling" asp-action="View">Exibir detalhes</a>
+                                        </li>
+                                    </ul>
                                 </div>
                             </td>
                         </tr>
@@ -87,12 +119,15 @@
                         <td></td>
                         <td></td>
                         <td></td>
+                        <td></td>
                         <td>Nenhum agendamento cadastrado</td>
+                        <td></td>
                         <td></td>
                         <td></td>
                     </tr>
                 }
             </tbody>
         </table>
+    </div>
 </body>
 </html>

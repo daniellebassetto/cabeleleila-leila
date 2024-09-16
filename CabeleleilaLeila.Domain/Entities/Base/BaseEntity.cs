@@ -6,7 +6,7 @@ namespace CabeleleilaLeila.Domain.Entities;
 public class BaseEntity<TEntity> : BaseSetProperty<TEntity>
     where TEntity : BaseEntity<TEntity>
 {
-    [Required]
+        [Required(ErrorMessage = "Campo obrigatório")]
     public virtual long? Id { get; set; }
     public virtual DateTime? CreationDate { get; set; }
     public virtual DateTime? ChangeDate { get; set; }

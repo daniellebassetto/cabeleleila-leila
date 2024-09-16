@@ -14,6 +14,9 @@ public class SchedulingService(IUnitOfWork unitOfWork) : BaseService<IScheduling
         if (originalScheduling is not null)
             throw new InvalidOperationException($"Horário '{inputCreate.DateTime.Value}' indisponível para agendamento.");
 
+        if (inputCreate.DateTime <= DateTime.Now)
+            throw new InvalidOperationException($"A data do agendamento não pode ser retroativa.");
+
         Scheduling Scheduling = FromInputCreateToEntity(inputCreate).SetProperty(nameof(Scheduling.Status), EnumStatusScheduling.WaitingConfirmation);
         var entity = _repository.Create(Scheduling) ?? throw new InvalidOperationException("Falha ao criar o agendamento.");
         _unitOfWork!.Commit();
@@ -25,23 +28,14 @@ public class SchedulingService(IUnitOfWork unitOfWork) : BaseService<IScheduling
     {
         Scheduling? originalScheduling = _repository!.Get(x => x.Id == id) ?? throw new KeyNotFoundException($"Não foi encontrado nenhum agendamento correspondente a este Id.");
 
-        if (originalScheduling.Status == EnumStatusScheduling.Canceled)
-            throw new InvalidOperationException($"Este agendamento foi cancelado.");
+        if (inputUpdate.DateTime <= DateTime.Now)
+            throw new InvalidOperationException($"A data do agendamento não pode ser retroativa.");
 
         Scheduling Scheduling = UpdateEntity(originalScheduling, inputUpdate) ?? throw new Exception("Problemas para realizar atualização");
         var entity = _repository!.Update(Scheduling) ?? throw new InvalidOperationException("Falha ao atualizar o agendamento.");
         _unitOfWork!.Commit();
 
         return FromEntityToOutput(entity);
-    }
-
-    public bool Cancel(long id)
-    {
-        Scheduling? originalScheduling = _repository!.Get(x => x.Id == id) ?? throw new KeyNotFoundException($"Não foi encontrado nenhum agendamento correspondente a este Id.");
-
-        _repository!.Update(originalScheduling.SetProperty(nameof(Scheduling.Status), EnumStatusScheduling.Canceled));
-        _unitOfWork!.Commit();
-        return true;
     }
 
     public bool Confirm(long id)

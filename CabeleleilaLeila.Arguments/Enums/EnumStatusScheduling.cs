@@ -7,7 +7,5 @@ public enum EnumStatusScheduling
     [Display(Name = "Aguardando confirmação")]
     WaitingConfirmation,
     [Display(Name = "Confirmado")]
-    Confirmed,
-    [Display(Name = "Cancelado")]
-    Canceled
+    Confirmed
 }
