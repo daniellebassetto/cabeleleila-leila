@@ -10,7 +10,7 @@ O **Cabeleleila Leila** é um sistema de agendamento de serviços para um salão
 - **.NET 8** (API)
 - **MySQL 8** (Banco de Dados)
 - **Clean Architecture** (Estrutura de Código)
-- **MVC** (Interface)
+- **MVC** (Interface) utilizado **HTML5, CSS3, JS e Bootstrap**
 
 ## Funcionalidades
 
