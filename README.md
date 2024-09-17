@@ -7,8 +7,8 @@ O **Cabeleleila Leila** é um sistema de agendamento de serviços para um salão
 
 ## Como logar como Admin?
 
-email: cabeleleiladsin@outlook.com
-senha: 1234
+- email: cabeleleiladsin@outlook.com
+- senha: 1234
 
 ## Tecnologias Utilizadas
 
