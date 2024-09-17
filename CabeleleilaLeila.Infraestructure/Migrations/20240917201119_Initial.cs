@@ -69,7 +69,7 @@ namespace CabeleleilaLeila.Infraestructure.Migrations
             migrationBuilder.InsertData(
                 table: "usuario",
                 columns: new[] { "id", "data_alteracao", "data_cadastro", "email", "celular", "nome", "senha", "tipo" },
-                values: new object[] { 1L, null, new DateTime(2024, 9, 17, 13, 45, 9, 512, DateTimeKind.Local).AddTicks(5965), "cabeleleiladesin@outlook.com", "5514991234567", "Leila", "1234", 0 });
+                values: new object[] { 1L, null, new DateTime(2024, 9, 17, 17, 11, 19, 308, DateTimeKind.Local).AddTicks(8139), "cabeleleiladsin@outlook.com", "5514991234567", "Leila", "1234", 0 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_agendamento_id_usuario",

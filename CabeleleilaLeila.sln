@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CabeleleilaLeila.Domain", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CabeleleilaLeila.Infraestructure", "CabeleleilaLeila.Infraestructure\CabeleleilaLeila.Infraestructure.csproj", "{E495D36D-2CBD-4242-81BA-3188C359FB66}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CabeleleilaLeila.Web", "CabeleleilaLeila.Web\CabeleleilaLeila.Web.csproj", "{EE977A51-FCD8-4B5F-B45A-159311F19E78}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CabeleleilaLeila.Web", "CabeleleilaLeila.Web\CabeleleilaLeila.Web.csproj", "{EE977A51-FCD8-4B5F-B45A-159311F19E78}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -18,7 +18,7 @@ public class CabeleleilaLeilaContext : DbContext
         modelBuilder.ApplyConfiguration(new UserMap());
         modelBuilder.ApplyConfiguration(new SchedulingMap());
 
-        modelBuilder.Entity<User>().HasData(new User("Leila", "5514991234567", "cabeleleiladesin@outlook.com", Arguments.EnumTypeUser.Admin, "1234", null)
+        modelBuilder.Entity<User>().HasData(new User("Leila", "5514991234567", "cabeleleiladsin@outlook.com", Arguments.EnumTypeUser.Admin, "1234", null)
         {
             Id = 1,
             CreationDate = DateTime.Now,

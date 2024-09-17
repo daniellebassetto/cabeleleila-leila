@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CabeleleilaLeila.Infraestructure.Migrations
 {
     [DbContext(typeof(CabeleleilaLeilaContext))]
-    [Migration("20240917164509_Initial")]
+    [Migration("20240917201119_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -120,8 +120,8 @@ namespace CabeleleilaLeila.Infraestructure.Migrations
                         new
                         {
                             Id = 1L,
-                            CreationDate = new DateTime(2024, 9, 17, 13, 45, 9, 512, DateTimeKind.Local).AddTicks(5965),
-                            Email = "cabeleleiladesin@outlook.com",
+                            CreationDate = new DateTime(2024, 9, 17, 17, 11, 19, 308, DateTimeKind.Local).AddTicks(8139),
+                            Email = "cabeleleiladsin@outlook.com",
                             MobilePhone = "5514991234567",
                             Name = "Leila",
                             Password = "1234",
