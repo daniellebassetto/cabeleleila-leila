@@ -5,6 +5,11 @@
 
 O **Cabeleleila Leila** é um sistema de agendamento de serviços para um salão de beleza. O sistema permite que os clientes agendem serviços como Corte de Cabelo, Hidratação, Manicure e Pedicure. O projeto foi desenvolvido utilizando **Clean Architecture**, com um banco de dados relacional MySQL e uma API em **.NET 8** que se conecta a uma aplicação MVC.
 
+## Como logar como Admin?
+
+email: cabeleleiladsin@outlook.com
+senha: 1234
+
 ## Tecnologias Utilizadas
 
 - **C# .NET 8** (API)
