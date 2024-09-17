@@ -112,6 +112,18 @@ namespace CabeleleilaLeila.Infraestructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("usuario", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            CreationDate = new DateTime(2024, 9, 17, 13, 45, 9, 512, DateTimeKind.Local).AddTicks(5965),
+                            Email = "cabeleleiladesin@outlook.com",
+                            MobilePhone = "5514991234567",
+                            Name = "Leila",
+                            Password = "1234",
+                            Type = 0
+                        });
                 });
 
             modelBuilder.Entity("CabeleleilaLeila.Domain.Entities.Scheduling", b =>
