@@ -13,7 +13,7 @@ CREATE TABLE usuario (
     senha VARCHAR(100) NOT NULL
 );
 
-INSERT INTO usuario VALUES (1, NOW(), NULL, 'Leila', '5514991234567', 'cabeleleila@outlook.com', 0, '1234');
+INSERT INTO usuario VALUES (1, NOW(), NULL, 'Leila', '5514991234567', 'cabeleleiladsin@outlook.com', 0, '1234');
 
 CREATE TABLE agendamento (
 	id BIGINT NOT NULL PRIMARY KEY auto_increment,
