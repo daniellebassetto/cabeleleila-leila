@@ -115,4 +115,35 @@ public class LoginController(IUserServiceClient userServiceClient, Helpers.ISess
             return RedirectToAction("Index");
         }
     }
+
+    public IActionResult RedefinePassword()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> RedefinePassword(InputRedefinePasswordUser input)
+    {
+        try
+        {
+            if (ModelState.IsValid)
+            {
+                var response = await _userServiceClient.RedefinePassword(input);
+
+                if (response.Success)
+                {
+                    TempData["SuccessMessage"] = "Senha atualizada com sucesso";
+                }
+
+                TempData["ErrorMessage"] = response.ErrorMessage!;
+            }
+
+            return View(input);
+        }
+        catch (Exception ex)
+        {
+            TempData["ErrorMessage"] = $"Erro: {ex.Message}";
+            return RedirectToAction("Index", "Home");
+        }
+    }
 }

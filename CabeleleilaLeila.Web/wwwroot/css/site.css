@@ -12,3 +12,66 @@
     opacity: 0.65;
     text-decoration: none;
 }
+
+.field-validation-error {
+    color: red;
+    font-size: 12px;
+}
+
+.close-alert-error {
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    padding: 0;
+    border: none;
+    background-color: red;
+}
+
+.close-alert-success {
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    padding: 0;
+    border: none;
+    background-color: green;
+}
+
+.background-image-home {
+    background-image: url('/img/fundo_cliente.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    height: 100vh;
+}
+
+.btn-custom {
+    background-color: #ECA02D;
+    color: black;
+    font-size: 1.25rem;
+    padding: 15px 30px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+    .btn-custom:hover {
+        background-color: #d89e2d;
+        text-decoration: none;
+        color: white;
+    }

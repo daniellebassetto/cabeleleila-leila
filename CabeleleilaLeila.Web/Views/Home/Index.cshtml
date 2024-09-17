@@ -2,7 +2,109 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<body class="@((ViewBag.UserType != EnumTypeUser.Admin) ? "background-image-home" : "")">
+    @if (ViewBag.UserType == EnumTypeUser.Admin)
+    {
+        <h1 class="text-center mb-5">Bem vinda, Leila!</h1>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3 class="text-center">Agendamentos por Dia</h3>
+                    <div class="chart-container" style="position: relative; height: 300px; width: 100%;">
+                        <canvas id="bar-chart"></canvas>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <h3 class="text-center">Agendamentos confirmados X Agendamentos não confirmados</h3>
+                    <div class="chart-container" style="position: relative; height: 300px; width: 100%;">
+                        <canvas id="pie-chart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="container text-center mt-5">
+            <a asp-area="" asp-controller="Scheduling" asp-action="Index" class="btn btn-custom">
+                Ver Meus Agendamentos
+            </a>
+        </div>
+    }
+
+    @section Scripts {
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                try {
+                    // Obter os dados do Controller
+                    var appointmentsByDay = @Html.Raw(Json.Serialize(ViewData["AppointmentsByDay"]));
+
+                    // Extrair datas e contagens
+                    var labels = appointmentsByDay.map(a => a.date);
+                    var data = appointmentsByDay.map(a => a.count);
+
+                    // Configurar o gráfico
+                    var ctx = document.getElementById('bar-chart').getContext('2d');
+                    var chart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: 'Número de Agendamentos por Dia',
+                                data: data,
+                                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                                borderColor: 'rgba(54, 162, 235, 1)',
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    title: {
+                                        display: true,
+                                        text: 'Número de Agendamentos'
+                                    }
+                                },
+                                x: {
+                                    title: {
+                                        display: true,
+                                        text: 'Data'
+                                    }
+                                }
+                            }
+                        }
+                    });
+
+                    // Dados para o gráfico de pizza
+                    var confirmedCount = @Html.Raw(Json.Serialize(ViewData["ConfirmedCount"]));
+                    var notConfirmedCount = @Html.Raw(Json.Serialize(ViewData["NotConfirmedCount"]));
+
+                    // Configurar o gráfico de pizza
+                    var ctxPie = document.getElementById('pie-chart').getContext('2d');
+                    new Chart(ctxPie, {
+                        type: 'pie',
+                        data: {
+                            labels: ['Confirmado', 'Não Confirmado'],
+                            datasets: [{
+                                data: [confirmedCount, notConfirmedCount],
+                                backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(255, 99, 132, 0.2)'],
+                                borderColor: ['rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)'],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false
+                        }
+                    });
+                } catch (error) {
+                    console.error('Erro ao carregar gráficos:', error);
+                }
+            });
+        </script>
+    }
+</body>

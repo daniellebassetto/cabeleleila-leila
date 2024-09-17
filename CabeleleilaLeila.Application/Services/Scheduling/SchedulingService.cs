@@ -46,4 +46,10 @@ public class SchedulingService(IUnitOfWork unitOfWork) : BaseService<IScheduling
         _unitOfWork!.Commit();
         return true;
     }
+
+    public List<OutputScheduling>? GetListByUserId(long userId)
+    {
+        var listEntity = _repository!.GetList(x => x.UserId == userId)?.ToList();
+        return listEntity != null ? FromEntityToOutput(listEntity) : null;
+    }
 }

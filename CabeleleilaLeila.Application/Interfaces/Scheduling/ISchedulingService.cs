@@ -5,4 +5,5 @@ namespace CabeleleilaLeila.Application.Interfaces;
 public interface ISchedulingService : IBaseService<InputCreateScheduling, InputUpdateScheduling, OutputScheduling, InputIdentifierScheduling>
 {
     bool Confirm(long id);
+    List<OutputScheduling>? GetListByUserId(long userId);
 }

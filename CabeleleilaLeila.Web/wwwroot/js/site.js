@@ -34,7 +34,11 @@ function getDataTable(id) {
     });
 }
 
-$('.close-alert').click(function () {
+$('.close-alert-sucess').click(function () {
+    $('.alert').hide('hide');
+});
+
+$('.close-alert-error').click(function () {
     $('.alert').hide('hide');
 });
 

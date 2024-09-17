@@ -8,4 +8,9 @@ public class SchedulingServiceClient(IHttpClientFactory factory) : BaseServiceCl
     {
         return await HandleRequestAsync<bool>(HttpMethod.Post, $"{_nameService}/Confirm/{id}", null);
     }
+
+    public async Task<BaseServiceClientResponse<List<OutputScheduling>>> GetListByUserId(long userId)
+    {
+        return await HandleRequestAsync<List<OutputScheduling>>(HttpMethod.Get, $"{_nameService}/GetListByUserId/{userId}", null);
+    }
 }

@@ -19,7 +19,6 @@ CREATE TABLE agendamento (
 	id BIGINT NOT NULL PRIMARY KEY auto_increment,
     data_cadastro DATETIME NOT NULL,
     data_alteracao DATETIME,
-    numero INT NOT NULL,
     id_usuario BIGINT NOT NULL,
     data_hora DATETIME NOT NULL,
     servico INT NOT NULL,

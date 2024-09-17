@@ -25,6 +25,22 @@ public class SchedulingController(IApiDataService apiDataService, ISchedulingSer
         }
     }
 
+    [HttpGet("GetListByUserId/{userId}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType<BaseResponseApi<string>>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<BaseResponseApi<string>>(StatusCodes.Status404NotFound)]
+    public async Task<ActionResult<BaseResponseApi<List<OutputScheduling>>>> GetListByUserId([FromRoute] long userId)
+    {
+        try
+        {
+            return await ResponseAsync(_service!.GetListByUserId(userId));
+        }
+        catch (Exception ex)
+        {
+            return await ResponseExceptionAsync(ex);
+        }
+    }
+
     [ApiExplorerSettings(IgnoreApi = true)]
     public override Task<ActionResult<BaseResponseApi<bool>>> Delete([FromRoute] long id)
     {

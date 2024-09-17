@@ -1,8 +1,8 @@
 ﻿@model OutputUser
 
-<nav class="navbar navbar-expand-sm navbar-light border-bottom box-shadow mb-3" style="background-color: #ECA02D;">
+<nav class="navbar navbar-expand-sm navbar-light border-bottom box-shadow mb-3 teste" style="background-color: #ECA02D;">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Cabeleleila Leila</a>
+        <a class="navbar-brand" style="font-weight: 600;" href="#">Cabeleleila Leila</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -25,8 +25,15 @@
                         Olá, @Model.Name
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenuLink">
-                        <li><a class="dropdown-item" href="#">Redefinir Senha</a></li>
-                        <li><a class="dropdown-item" href="#">Sair</a></li>
+                        <li>
+                            <a asp-area="" asp-controller="Login" asp-action="RedefinePassword" class="dropdown-item" style="color: black;">Redefinir Senha</a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <a asp-area="" asp-controller="Login" asp-action="Exit" class="dropdown-item" style="color: black;">Sair</a>
+                        </li>
                     </ul>
                 </div>
             </div>

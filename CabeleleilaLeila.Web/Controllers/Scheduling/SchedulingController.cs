@@ -9,9 +9,10 @@ public class SchedulingController(ISchedulingServiceClient schedulingServiceClie
     private readonly ISchedulingServiceClient _schedulingServiceClient = schedulingServiceClient;
     private readonly Helpers.ISession _session = session;
 
-    public async Task<IActionResult> Index()
+    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+    public IActionResult Index()
     {
-        var response = await _schedulingServiceClient.GetAll();
+        var response = _schedulingServiceClient.GetAll().Result;
 
         if (!response.Success)
         {
@@ -22,7 +23,7 @@ public class SchedulingController(ISchedulingServiceClient schedulingServiceClie
         var listScheduling = response.Data?.OrderByDescending(a => a.DateTime).ToList() ?? [];
         var user = _session.GetUserSession()!;
 
-        if(user.Type == EnumTypeUser.Default)
+        if (user.Type == EnumTypeUser.Default)
             listScheduling = listScheduling.Where(x => x.UserId == user.Id).Select(x => x).ToList();
 
         ViewBag.UserType = user.Type;
@@ -53,6 +54,37 @@ public class SchedulingController(ISchedulingServiceClient schedulingServiceClie
 
         TempData["ErrorMessage"] = response.ErrorMessage ?? "Erro ao criar agendamento.";
         return View(inputCreate);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> CheckDateAvailability(DateTime selectedDate)
+    {
+        var startOfWeek = selectedDate.AddDays(-(int)selectedDate.DayOfWeek + (int)DayOfWeek.Monday);
+        var endOfWeek = startOfWeek.AddDays(6);
+
+        if (selectedDate.Date < DateTime.Now.Date)
+            return Json(new { hasConflict = false });
+
+        var listSchedulings = await _schedulingServiceClient.GetListByUserId(_session.GetUserSession()!.Id);
+
+        if (listSchedulings.Success)
+        {
+            var clientSchedules = listSchedulings.Data;
+
+            var futureSameWeekSchedules = clientSchedules?
+                .Where(s => s.DateTime!.Value.Date >= startOfWeek && s.DateTime.Value.Date <= endOfWeek && s.DateTime.Value.Date >= DateTime.Now && s.DateTime.Value.Date.Date != selectedDate.Date)
+                .OrderBy(s => s.DateTime)
+                .ToList();
+
+            if (futureSameWeekSchedules?.Count != 0)
+            {
+                var closestFutureSchedule = futureSameWeekSchedules?.First();
+                var message = $"Sujestão: você já possui um agendamento esta semana, no dia {closestFutureSchedule?.DateTime}.";
+                return Json(new { hasConflict = true, message });
+            }
+        }
+
+        return Json(new { hasConflict = false });
     }
 
     [HttpGet]
