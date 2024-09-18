@@ -33,8 +33,8 @@ O **Cabeleleila Leila** é um sistema de agendamento de serviços para um salão
 
 - **Login**: é possível realizar login no sistema, além de redefinir a senha caso esqueça, na qual enviamos um email com uma nova senha. Os dados de login estão na explicação anterior no início do Readme.
 - **Visualização dos resultados semanais**: é possível ver a quantidade de agendamentos por dia na semana e ver quantos foram confirmados e quantos aguardam confirmação. Tudo isso através de gráficos intuitivos na Home.
-- **Listagem de agendamentos**: é possível ver todos os agendamentos de todas as clientes, com os dados de cada um. 
-- **Atualização de agendamento**: é possível atualizar um agendamento. A listagem possui um filtro que se encaixa a qualquer campo.
+- **Listagem de agendamentos**: é possível ver todos os agendamentos de todas as clientes, com os dados de cada um. A listagem possui um filtro que se encaixa a qualquer campo.
+- **Atualização de agendamento**: é possível atualizar um agendamento.
 - **Confirmação de agendamento**: é possível confirmar um agendamento.
 - **Visualizar detalhes do agendamento**: é possível ver todos os detalhes de um determinado agendamento.
 - **Logout**: é possível encerrar a sessão no sistema.
