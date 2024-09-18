@@ -46,7 +46,6 @@ O **Cabeleleila Leila** é um sistema de agendamento de serviços para um salão
 
 - [.NET SDK 8.0](https://dotnet.microsoft.com/download/dotnet/8.0)
 - [MySQL 8.0](https://dev.mysql.com/downloads/mysql/)
-- [Visual Studio](https://visualstudio.microsoft.com/) ou [Visual Studio Code](https://code.visualstudio.com/) (opcional para desenvolvimento)
 
 ### Instalação e Configuração
 
