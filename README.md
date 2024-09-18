@@ -17,7 +17,9 @@ O **Cabeleleila Leila** é um sistema de agendamento de serviços para um salão
 - **Clean Architecture** (Estrutura de Código)
 - **MVC** (Interface) utilizado **HTML5, CSS3, JS e Bootstrap**
 
-## Para o cliente
+## Funcionalidades
+
+### Para o cliente
 
 - **Cadastro e Login**: é possível se cadastrar e realizar login no sistema, além de redefinir a senha caso esqueça, na qual enviamos um email com uma nova senha.
 - **Listagem de agendamentos**: é possível ver a listagem de agendamentos que esse cliente realizou. Através dessa tela o cliente pode saber o status de seu agendamento e ver os demais dados. A listagem possui um filtro que se encaixa a qualquer campo.
@@ -27,7 +29,7 @@ O **Cabeleleila Leila** é um sistema de agendamento de serviços para um salão
 - **Logout**: é possível encerrar a sessão no sistema.
 - **Redefinição de senha**: é possível redefinir a senha.
 
-## Para a Leila
+### Para a Leila
 
 - **Login**: é possível realizar login no sistema, além de redefinir a senha caso esqueça, na qual enviamos um email com uma nova senha. Os dados de login estão na explicação anterior no início do Readme.
 - **Visualização dos resultados semanais**: é possível ver a quantidade de agendamentos por dia na semana e ver quantos foram confirmados e quantos aguardam confirmação. Tudo isso através de gráficos intuitivos na Home.
