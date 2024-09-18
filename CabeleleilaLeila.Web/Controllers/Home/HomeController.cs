@@ -11,22 +11,30 @@ public class HomeController(ISchedulingServiceClient schedulingServiceClient, He
 
     public async Task<IActionResult> Index()
     {
-        var userType = _session.GetUserSession()!.Type;
+        var userType = _session.GetUserSession()?.Type;
         ViewBag.UserType = userType;
 
         if (userType == EnumTypeUser.Admin)
         {
-            var allAppointments = await _schedulingServiceClient.GetAll();
-            var allAppointmentsData = allAppointments.Data;
+            var allAppointmentsResponse = await _schedulingServiceClient.GetAll();
+            var allAppointmentsData = allAppointmentsResponse.Data;
 
-            var appointmentsByDay = allAppointmentsData?
+            var today = DateTime.Today;
+            var startDateOfWeek = today.AddDays(-(int)today.DayOfWeek + (int)DayOfWeek.Monday);
+            var endDateOfWeek = startDateOfWeek.AddDays(6); 
+
+            var appointmentsThisWeek = allAppointmentsData?
+                .Where(a => a.DateTime.HasValue && a.DateTime.Value.Date >= startDateOfWeek && a.DateTime.Value.Date <= endDateOfWeek)
+                .ToList();
+
+            var appointmentsByDay = appointmentsThisWeek?
                 .GroupBy(a => a.DateTime!.Value.Date)
                 .Select(g => new { Date = g.Key.ToShortDateString(), Count = g.Count() })
                 .OrderBy(x => x.Date)
                 .ToList();
 
-            var confirmedCount = allAppointmentsData?.Count(a => a.Status == EnumStatusScheduling.Confirmed) ?? 0;
-            var notConfirmedCount = allAppointmentsData?.Count(a => a.Status == EnumStatusScheduling.WaitingConfirmation) ?? 0;
+            var confirmedCount = appointmentsThisWeek?.Count(a => a.Status == EnumStatusScheduling.Confirmed) ?? 0;
+            var notConfirmedCount = appointmentsThisWeek?.Count(a => a.Status == EnumStatusScheduling.WaitingConfirmation) ?? 0;
 
             ViewData["AppointmentsByDay"] = appointmentsByDay;
             ViewData["ConfirmedCount"] = confirmedCount;

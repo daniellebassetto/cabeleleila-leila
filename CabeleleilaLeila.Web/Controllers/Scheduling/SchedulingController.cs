@@ -10,9 +10,9 @@ public class SchedulingController(ISchedulingServiceClient schedulingServiceClie
     private readonly Helpers.ISession _session = session;
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
-        var response = _schedulingServiceClient.GetAll().Result;
+        var response = await _schedulingServiceClient.GetAll();
 
         if (!response.Success)
         {
@@ -24,7 +24,7 @@ public class SchedulingController(ISchedulingServiceClient schedulingServiceClie
         var user = _session.GetUserSession()!;
 
         if (user.Type == EnumTypeUser.Default)
-            listScheduling = listScheduling.Where(x => x.UserId == user.Id).Select(x => x).ToList();
+            listScheduling = listScheduling.Where(x => x.UserId == user.Id).ToList();
 
         ViewBag.UserType = user.Type;
 
