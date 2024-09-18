@@ -7,6 +7,7 @@
     @{
         ViewData["Title"] = "Atualizar agendamento";
     }
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -36,7 +37,7 @@
                     <div class="col-md-6">
                         <label for="datetime" class="form-label">Data e Hora</label>
                         @Html.ValidationMessageFor(x => x.DateTime, "", new { @class = "text-danger" })
-                        <input type="datetime-local" asp-for="DateTime" class="form-control" placeholder="Informe a data e hora do agendamento">
+                        <input type="datetime-local" asp-for="DateTime" class="form-control" id="datetime-input" placeholder="Informe a data e hora do agendamento">
                     </div>
                     <div class="col-md-6">
                         <label for="service" class="form-label">Serviço</label>
@@ -68,5 +69,20 @@
             </form>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function () {
+            $('#datetime-input').on('change', function () {
+                var selectedDate = $(this).val();
+                if (selectedDate) {
+                    $.get('@Url.Action("CheckDateAvailability", "Scheduling")', { selectedDate: selectedDate }, function (data) {
+                        if (data.hasConflict) {
+                            alert(data.message);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
