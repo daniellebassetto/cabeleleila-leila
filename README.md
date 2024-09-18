@@ -22,21 +22,21 @@ O **Cabeleleila Leila** é um sistema de agendamento de serviços para um salão
 - **Cadastro e Login**: é possível se cadastrar e realizar login no sistema, além de redefinir a senha caso esqueça, na qual enviamos um email com uma nova senha.
 - **Listagem de agendamentos**: é possível ver a listagem de agendamentos que esse cliente realizou. Através dessa tela o cliente pode saber o status de seu agendamento e ver os demais dados. A listagem possui um filtro que se encaixa a qualquer campo.
 - **Criação de agendamento**: é possível criar um agendamento desde que a data e hora estejam disponíveis. No momento da criação o cliente escolhe o serviço e pode ou não informar uma observação. Caso o cliente já tenha um agendamento na mesma semana, ele sugere a criação do novo agendamento na mesma data.
--**Edição de agendamento**: é possível editar um agendamento até 2 dias antes da data do mesmo. Caso não cumpra essa condição, a edição fica desabilitada para este agendamento e é necessário que o cliente faça contato via telefone com a Leila.
--**Visualizar detalhes do agendamento**: é possível ver todos os detalhes de um determinado agendamento.
--**Logout**: é possível encerrar a sessão no sistema.
--**Redefinição de senha**: é possível redefinir a senha.
+- **Edição de agendamento**: é possível editar um agendamento até 2 dias antes da data do mesmo. Caso não cumpra essa condição, a edição fica desabilitada para este agendamento e é necessário que o cliente faça contato via telefone com a Leila.
+- **Visualizar detalhes do agendamento**: é possível ver todos os detalhes de um determinado agendamento.
+- **Logout**: é possível encerrar a sessão no sistema.
+- **Redefinição de senha**: é possível redefinir a senha.
 
 ## Para a Leila
 
--**Login**: é possível realizar login no sistema, além de redefinir a senha caso esqueça, na qual enviamos um email com uma nova senha. Os dados de login estão na explicação anterior no início do Readme.
--**Visualização dos resultados semanais**: é possível ver a quantidade de agendamentos por dia na semana e ver quantos foram confirmados e quantos aguardam confirmação. Tudo isso através de gráficos intuitivos na Home.
--**Listagem de agendamentos**: é possível ver todos os agendamentos de todas as clientes, com os dados de cada um. 
--**Atualização de agendamento**: é possível atualizar um agendamento. A listagem possui um filtro que se encaixa a qualquer campo.
--**Confirmação de agendamento**: é possível confirmar um agendamento.
--**Visualizar detalhes do agendamento**: é possível ver todos os detalhes de um determinado agendamento.
--**Logout**: é possível encerrar a sessão no sistema.
--**Redefinição de senha**: é possível redefinir a senha.
+- **Login**: é possível realizar login no sistema, além de redefinir a senha caso esqueça, na qual enviamos um email com uma nova senha. Os dados de login estão na explicação anterior no início do Readme.
+- **Visualização dos resultados semanais**: é possível ver a quantidade de agendamentos por dia na semana e ver quantos foram confirmados e quantos aguardam confirmação. Tudo isso através de gráficos intuitivos na Home.
+- **Listagem de agendamentos**: é possível ver todos os agendamentos de todas as clientes, com os dados de cada um. 
+- **Atualização de agendamento**: é possível atualizar um agendamento. A listagem possui um filtro que se encaixa a qualquer campo.
+- **Confirmação de agendamento**: é possível confirmar um agendamento.
+- **Visualizar detalhes do agendamento**: é possível ver todos os detalhes de um determinado agendamento.
+- **Logout**: é possível encerrar a sessão no sistema.
+- **Redefinição de senha**: é possível redefinir a senha.
 
 ## Requisitos
 
